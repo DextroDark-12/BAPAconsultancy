@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact BAPA Consultancy — Advocate-backed accounting, tax consultancy, and global KPO services. Get in touch for a consultation.">
+
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Google Fonts: Playfair Display + Inter -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="styles.css">
+  <title>Contact Us — BAPA Consultancy</title>
+</head>
+<body>
+
+  <!-- ====================================================================
+       Top Contact Bar — Desktop Only
+       ==================================================================== -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-bar__left">
+        <span class="top-bar__item">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M3 1l2 4-1 2 3 3 2-1 1 2v2a1 1 0 01-1 1C6.5 14 3 10.5 2 6a1 1 0 011-1h2z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          </svg>
+          <a href="tel:+918140999901">+91 8140 9999 01</a>
+        </span>
+      </div>
+      <div class="top-bar__center">
+        <span class="top-bar__separator" aria-hidden="true"></span>
+        <span class="top-bar__item">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <path d="M2 3l3 2L2 3z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <path d="M10 3l-3 2L10 3z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <rect x="1" y="2" width="10" height="8" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          </svg>
+          <a href="mailto:support@bapaconsultancycompany.com">support@bapaconsultancycompany.com</a>
+        </span>
+        <span class="top-bar__separator" aria-hidden="true"></span>
+      </div>
+      <div class="top-bar__right">
+        <span class="top-bar__item">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+            <circle cx="6" cy="6" r="5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <path d="M6 3v3l2 1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Mon–Sat | 9 AM – 8 PM
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       Header / Navigation — Transparent → Solid on Scroll
+       ==================================================================== -->
+  <header class="site-header" role="banner">
+    <div class="container">
+
+      <!-- Logo -->
+      <a href="index.html" class="site-logo" aria-label="BAPA Consultancy — Home">
+        <img src="navbar-logo.png" alt="BAPA Consultancy" class="site-logo__img" loading="eager">
+      </a>
+
+      <!-- Desktop Navigation (centered) -->
+      <nav class="nav-desktop" role="navigation" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="index.html#who-we-serve">Who We Serve</a>
+        <a href="index.html#trust">Why Trust Us</a>
+        <a href="index.html#testimonials">Testimonials</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+
+      <!-- Desktop CTA (right-aligned) -->
+      <a href="consultation.html" class="btn btn--nav-cta desktop-cta">Book Consultation</a>
+
+      <!-- Mobile: Hamburger Toggle -->
+      <button class="nav-toggle" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Mobile: Drawer + Overlay -->
+      <div class="nav-drawer-overlay" aria-hidden="true"></div>
+      <div class="nav-drawer" role="dialog" aria-modal="true" aria-label="Navigation menu">
+        <button class="nav-drawer__close" aria-label="Close navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <nav class="nav-drawer__links">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="index.html#who-we-serve">Who We Serve</a>
+          <a href="index.html#trust">Why Trust Us</a>
+          <a href="index.html#testimonials">Testimonials</a>
+          <a href="contact.html" aria-current="page">Contact</a>
+          <a href="consultation.html" class="btn btn--nav-cta">Book Consultation</a>
+        </nav>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       Main Content
+       ==================================================================== -->
+  <main role="main">
+
+    <!-- ====================================================================
+         Section 1 — Contact Hero
+         ==================================================================== -->
+    <section class="page-hero" aria-label="Contact us">
+      <div class="page-hero__bg"></div>
+      <div class="container page-hero__content">
+        <h1 class="page-hero__title">Let's Talk — We're Ready to Help</h1>
+        <p class="page-hero__subtitle">
+          Whether you need accounting support, tax advisory, or global outsourcing solutions, our team is ready to assist.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Section 2 — Main Contact Section (2-column)
+         ==================================================================== -->
+    <section id="contact-form" class="section contact-main" aria-label="Contact form and information">
+      <div class="container">
+        <div class="contact-main__grid">
+
+          <!-- Left Column — Contact Form -->
+          <div class="contact-main__form-col">
+            <div class="contact-form-card">
+              <h2 class="contact-form-card__title">Send Us a Message</h2>
+              <form class="contact-form" id="contactForm" novalidate>
+
+                <div class="contact-form__field">
+                  <label for="contact-name" class="contact-form__label">Full Name <span class="contact-form__required">*</span></label>
+                  <input
+                    type="text"
+                    id="contact-name"
+                    name="name"
+                    class="contact-form__input"
+                    placeholder="Your full name"
+                    required
+                    autocomplete="name"
+                  >
+                  <span class="contact-form__error" role="alert"></span>
+                </div>
+
+                <div class="contact-form__field">
+                  <label for="contact-email" class="contact-form__label">Email Address <span class="contact-form__required">*</span></label>
+                  <input
+                    type="email"
+                    id="contact-email"
+                    name="email"
+                    class="contact-form__input"
+                    placeholder="your@email.com"
+                    required
+                    autocomplete="email"
+                  >
+                  <span class="contact-form__error" role="alert"></span>
+                </div>
+
+                <div class="contact-form__field">
+                  <label for="contact-phone" class="contact-form__label">Phone Number <span class="contact-form__required">*</span></label>
+                  <input
+                    type="tel"
+                    id="contact-phone"
+                    name="phone"
+                    class="contact-form__input"
+                    placeholder="+91 98765 43210"
+                    required
+                    autocomplete="tel"
+                  >
+                  <span class="contact-form__error" role="alert"></span>
+                </div>
+
+                <div class="contact-form__field">
+                  <label for="contact-country" class="contact-form__label">Country</label>
+                  <input
+                    type="text"
+                    id="contact-country"
+                    name="country"
+                    class="contact-form__input"
+                    placeholder="Your country (optional)"
+                    autocomplete="country-name"
+                  >
+                </div>
+
+                <div class="contact-form__field">
+                  <label for="contact-service" class="contact-form__label">Service Interested In</label>
+                  <select id="contact-service" name="service" class="contact-form__input contact-form__select">
+                    <option value="">Select a service</option>
+                    <option value="accounting">Accounting &amp; Bookkeeping</option>
+                    <option value="tax">Tax Consultancy</option>
+                    <option value="kpo">KPO Services</option>
+                    <option value="virtual-cfo">Virtual CFO Services</option>
+                    <option value="general">General Inquiry</option>
+                  </select>
+                </div>
+
+                <div class="contact-form__field">
+                  <label for="contact-message" class="contact-form__label">Message <span class="contact-form__required">*</span></label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    class="contact-form__input contact-form__textarea"
+                    placeholder="Tell us about your requirements..."
+                    required
+                    rows="5"
+                  ></textarea>
+                  <span class="contact-form__error" role="alert"></span>
+                </div>
+
+                <button type="submit" class="btn btn--primary btn--lg contact-form__submit">Book Consultation</button>
+
+              </form>
+            </div>
+          </div>
+
+          <!-- Right Column — Firm Information -->
+          <div class="contact-main__info-col">
+            <div class="contact-info-card">
+              <h2 class="contact-info-card__title">Contact Information</h2>
+
+              <div class="contact-info-card__items">
+
+                <div class="contact-info-card__item">
+                  <div class="contact-info-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <path d="M9 2C5.5 2 2.5 5 2.5 8.5c0 4.5 6.5 9.5 6.5 9.5s6.5-5 6.5-9.5C15.5 5 12.5 2 9 2z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                      <circle cx="9" cy="8.5" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                  </div>
+                  <div class="contact-info-card__text">
+                    <strong class="contact-info-card__label">Address</strong>
+                    <span>611-Star Plaza, Phoolchhab Chowk,<br>Rajkot – 360001, Gujarat, India</span>
+                  </div>
+                </div>
+
+                <div class="contact-info-card__item">
+                  <div class="contact-info-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <path d="M3 4l5 3.5L3 4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                      <path d="M15 4l-5 3.5L15 4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                      <rect x="2" y="3" width="14" height="12" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                      <path d="M2 7l6 4 6-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                  </div>
+                  <div class="contact-info-card__text">
+                    <strong class="contact-info-card__label">Email</strong>
+                    <a href="mailto:support@bapaconsultancycompany.com">support@bapaconsultancycompany.com</a>
+                  </div>
+                </div>
+
+                <div class="contact-info-card__item">
+                  <div class="contact-info-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <path d="M3 4l5 3.5L3 4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                      <path d="M15 4l-5 3.5L15 4z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                      <rect x="2" y="3" width="14" height="12" rx="1.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                      <path d="M2 7l6 4 6-4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    </svg>
+                  </div>
+                  <div class="contact-info-card__text">
+                    <strong class="contact-info-card__label">Phone</strong>
+                    <a href="tel:+918140999901">+91 8140 9999 01</a>
+                  </div>
+                </div>
+
+                <div class="contact-info-card__item">
+                  <div class="contact-info-card__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                      <circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                      <path d="M9 5v4l3 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <div class="contact-info-card__text">
+                    <strong class="contact-info-card__label">Working Hours</strong>
+                    <span>Mon – Sat<br>9:00 AM – 8:00 PM</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <a
+                href="https://wa.me/918140999901"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn--primary btn--lg contact-info-card__wa"
+              >
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Section 3 — Google Map
+         ==================================================================== -->
+    <section class="section contact-map" aria-label="Office location map">
+      <div class="container">
+        <div class="contact-map__wrapper">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.5!2d70.8!3d22.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjLCsDE4JzAwLjAiTiA3MMKwNDgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="BAPA Consultancy office location at 611-Star Plaza, Phoolchhab Chowk, Rajkot"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         Section 4 — CTA Banner
+         ==================================================================== -->
+    <section class="cta-banner" aria-label="Call to action">
+      <div class="container cta-banner__content">
+        <h2 class="cta-banner__title">Need Immediate Assistance?</h2>
+        <div class="cta-banner__actions">
+          <a href="consultation.html" class="btn btn--primary btn--lg">Book Consultation</a>
+          <a href="https://wa.me/918140999901" target="_blank" rel="noopener noreferrer" class="btn cta-banner__wa-btn btn--lg">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M9 0C4.03 0 0 4.03 0 9c0 1.59.42 3.15 1.21 4.53L0 18l4.58-1.2A8.95 8.95 0 009 18c4.97 0 9-4.03 9-9s-4.03-9-9-9z" fill="currentColor"/>
+              <path d="M13.5 11.2c-.2.6-.8 1-1.4 1.1-.4.1-.8.1-1.2-.1-.3-.1-.6-.2-.9-.3-.5-.2-1-.5-1.5-.9-.4-.3-.8-.7-1.1-1.1-.4-.5-.7-1-.9-1.5-.1-.3-.2-.6-.3-.9-.2-.4-.1-.8.1-1.2.1-.6.5-1.1 1.1-1.3.2-.1.4-.1.6 0 .2 0 .4.2.5.4l.5 1c.1.2.2.4.2.6 0 .2-.1.4-.2.6-.1.2-.2.3-.4.5-.1.1-.2.2-.1.3.2.3.4.6.7.9.3.3.6.5.9.7.1.1.2.1.3 0 .1-.2.3-.4.5-.5.2-.2.4-.3.6-.2l1 .5c.2.1.4.3.4.5.1.2.1.4 0 .6z" fill="#fff"/>
+            </svg>
+            WhatsApp Us Now
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====================================================================
+       Footer — Reused from Homepage
+       ==================================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand -->
+        <div class="footer-col footer-col--brand">
+          <a href="index.html" class="footer-logo" aria-label="BAPA Consultancy — Home">
+            <img src="Screenshot 2026-06-25 182430.png" alt="BAPA Consultancy" class="footer-logo__img" loading="lazy">
+          </a>
+          <p class="footer-desc">
+            Advocate-backed accounting, tax compliance, and global KPO services —
+            delivering precision and trust to businesses across India and beyond.
+          </p>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#who-we-serve">Who We Serve</a></li>
+            <li><a href="index.html#trust">Why Trust Us</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Contact -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Contact Us</h3>
+          <address class="footer-contact">
+            <div class="footer-contact__item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1C4.5 1 2.5 3 2.5 5.5c0 3.5 4.5 7.5 4.5 7.5s4.5-4 4.5-7.5C11.5 3 9.5 1 7 1z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                <circle cx="7" cy="5.5" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/>
+              </svg>
+              <span>611-Star Plaza, Phoolchhab Chowk, Rajkot-360001</span>
+            </div>
+            <div class="footer-contact__item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 3l4 2.5L2 3z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                <path d="M12 3l-4 2.5L12 3z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                <rect x="1.5" y="2.5" width="11" height="9" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                <path d="M1.5 5.5l4.5 3 4.5-3" stroke="currentColor" stroke-width="1.2" fill="none"/>
+              </svg>
+              <a href="tel:+918140999901">+91 8140 9999 01</a>
+            </div>
+            <div class="footer-contact__item">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <rect x="1.5" y="2.5" width="11" height="9" rx="1" stroke="currentColor" stroke-width="1.2" fill="none"/>
+                <path d="M1.5 5.5l4.5 3 4.5-3" stroke="currentColor" stroke-width="1.2" fill="none"/>
+              </svg>
+              <a href="mailto:support@bapaconsultancycompany.com">support@bapaconsultancycompany.com</a>
+            </div>
+          </address>
+        </div>
+
+        <!-- Column 4: Legal -->
+        <div class="footer-col">
+          <h3 class="footer-heading">Legal</h3>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Disclaimer</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 BAPA Consultancy. All rights reserved.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Button -->
+  <a
+    href="https://wa.me/918140999901"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="wa-float"
+    aria-label="Chat on WhatsApp"
+  >
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+      <path d="M14 0C6.27 0 0 6.27 0 14c0 2.48.65 4.9 1.89 7.02L0 28l7.13-1.87A13.94 13.94 0 0014 28c7.73 0 14-6.27 14-14S21.73 0 14 0z" fill="#fff"/>
+      <path d="M14 4.5c-5.25 0-9.5 4.25-9.5 9.5 0 1.68.44 3.32 1.27 4.75L4.5 23.5l4.97-1.3c1.4.78 2.98 1.2 4.53 1.2 5.25 0 9.5-4.25 9.5-9.5S19.25 4.5 14 4.5zm5.1 11.95c-.2.6-.75 1.05-1.4 1.15-.4.1-.85.1-1.25-.1-.3-.1-.65-.25-.95-.4-.55-.25-1.05-.55-1.55-.95-.45-.35-.85-.75-1.2-1.2-.45-.55-.8-1.1-1.0-1.65-.15-.35-.25-.7-.35-1.05-.25-.45-.15-.95.1-1.35.2-.55.6-.95 1.1-1.15.2-.1.4-.1.6 0s.4.2.5.45l.55 1.05c.15.25.2.5.15.75-.05.25-.15.45-.3.65-.15.2-.3.35-.5.5-.1.1-.2.2-.1.35.25.35.5.7.85 1.0s.7.6 1.05.8c.15.1.25.1.35 0 .2-.25.35-.5.6-.65.2-.15.5-.25.75-.15l1.05.55c.25.15.4.35.5.6s.1.5 0 .75z" fill="#25D366"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>

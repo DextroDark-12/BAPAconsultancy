@@ -1,20 +1,24 @@
 # Next Session — Carryover Notes
 
-## Current Status (v0.6)
+## Current Status (v0.10)
 
-| Section         | Status      | Details                                    |
-|-----------------|-------------|--------------------------------------------|
-| Navbar          | ✅ Built    | Transparent→cream glass scroll, logo fixed  |
-| Hero            | ✅ Built    | Corporate professional copy, locked        |
-| Services        | ✅ Built    | 3 premium cards, soft bg                   |
-| Who We Serve    | ✅ Built    | Split layout, cream bg                     |
-| Trust           | ✅ Built    | 4 trust cards, grid layout                 |
-| Testimonials    | ✅ Built    | Stats row + 3 testimonial placeholders     |
-| CTA Banner      | ✅ Built    | Full-width blue, two CTAs                  |
-| Footer          | ✅ Built    | Rich 4-col grid, contact, legal            |
-| **About**       | ❌ Pending  | Goes after Hero — layout locked            |
-| **Contact Page**| ❌ Pending  | Phase 1: frontend only, JS validation      |
-| **Services Page**| ✅ Built    | 3 service categories + Why Outsource, hero, CTA  |
+| Section                 | Status      | Details                                    |
+|-------------------------|-------------|--------------------------------------------|
+| Navbar                  | ✅ Built    | Synced, active state, smooth top-bar-driven top transition |
+| Top Contact Bar         | ✅ Built    | Fixed position, slides up on scroll, reappears at top |
+| Hero                    | ✅ Built    | Corporate professional copy, locked        |
+| Services                | ✅ Built    | 3 premium cards, soft bg                   |
+| Who We Serve            | ✅ Built    | Split layout, cream bg                     |
+| Trust                   | ✅ Built    | 4 trust cards, grid layout                 |
+| Testimonials            | ✅ Built    | Stats row + 3 testimonial placeholders     |
+| CTA Banner              | ✅ Built    | Full-width blue, two CTAs, reduced padding |
+| **Footer**              | ✅ Built    | Refined spacing, heading weight, link hover shift, better contrast |
+| **About**               | ❌ Pending  | Goes after Hero — layout locked            |
+| **Contact Page**        | ✅ Built    | Full page: form, info card, map, validation, toast |
+| **Services Page**       | ✅ Built    | 3 service categories + Why Outsource, hero, CTA  |
+| **Consultation Page**   | ✅ Built    | Premium form + FAQ, reassurance banner      |
+| **WhatsApp Float**      | ✅ Built    | Cosmo-style premium: multi-layer shadow, glass edge, 8s pulse |
+| **Design System**       | ✅ Built    | --radius-lg, --radius-xl, --shadow-lg, unified green CTAs |
 
 ## Ready to Build (Next Priority)
 
@@ -25,16 +29,16 @@
 - Mobile: stacked layout
 - Stats: 100+ Tax Filings, 250+ Businesses Served, 4+ Countries Served, Advocate-Led Expertise
 
-### 2. Contact Page (Phase 1)
-
-- Frontend only — no backend
-- Form behavior: JS validation, fake submit, success toast
-- n8n integration later
-
 ## Logo Reminder
 
-- Navbar: `navbar-logo.png` (cropped 462×362)
+- Navbar: `navbar-logo.png` (cropped 461×355)
 - Footer: still uses `Screenshot 2026-06-25 182430.png` — should be updated to same asset
+
+## Page Reminders
+
+- **Contact page**: Replace `contact.html` map embed URL with exact Google Maps place URL
+- **Consultation page**: Future n8n integration → Google Calendar → Event Creation → WhatsApp Confirmation
+- **All forms**: Phase 1 frontend only — n8n webhook integration pending
 
 ## Technical Reminders
 

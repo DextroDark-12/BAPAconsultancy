@@ -55,10 +55,13 @@
   /* Borders */
   --radius-sm:     4px;
   --radius-md:     8px;
+  --radius-lg:     14px;
+  --radius-xl:     20px;
 
   /* Shadows — intentionally subtle */
   --shadow-sm:     0 1px 2px rgba(34, 58, 143, 0.06);
   --shadow-md:     0 2px 8px rgba(34, 58, 143, 0.08);
+  --shadow-lg:     0 8px 32px rgba(34, 58, 143, 0.10);
 
   /* Transitions */
   --transition:    200ms ease-in-out;
@@ -942,7 +945,13 @@ h3 {
   background-color: var(--primary-blue);
   color: var(--white);
   text-align: center;
-  padding: var(--space-20) 0;
+  padding: var(--space-16) 0;
+}
+
+@media (min-width: 768px) {
+  .cta-banner {
+    padding: var(--space-20) 0;
+  }
 }
 
 .cta-banner__content {
@@ -997,13 +1006,17 @@ h3 {
   align-items: center;
   gap: var(--space-2);
   color: var(--white);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background-color: #25D366;
+  border: 1px solid #25D366;
+  border-radius: 8px;
+  transition: background-color 250ms ease, transform 250ms ease, box-shadow 250ms ease;
 }
 
 .cta-banner__wa-btn:hover {
-  border-color: #25D366;
-  background-color: #25D366;
-  color: var(--white);
+  background-color: #1DA851;
+  border-color: #1DA851;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
 .cta-banner__wa-btn svg {
@@ -1014,7 +1027,88 @@ h3 {
 
 
 /* --------------------------------------------------------------------------
-   11. Global Header — Transparent → Solid on Scroll
+   11. Top Contact Bar — Above Navbar (Hides on Scroll)
+   -------------------------------------------------------------------------- */
+
+.top-bar {
+  display: none;
+  background-color: var(--primary-blue);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: var(--text-xs);
+  font-family: var(--font-body);
+}
+
+@media (min-width: 768px) {
+  .top-bar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    transform: translateY(0);
+    opacity: 1;
+    transition: transform 300ms ease, opacity 300ms ease;
+  }
+
+  .top-bar--hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.top-bar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.top-bar__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  line-height: 1;
+}
+
+.top-bar__item svg {
+  flex-shrink: 0;
+  color: var(--accent-orange);
+}
+
+.top-bar__separator {
+  width: 1px;
+  height: 16px;
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.top-bar__left,
+.top-bar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.top-bar__center {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.top-bar a {
+  color: rgba(255, 255, 255, 0.85);
+  transition: color 200ms ease;
+}
+
+.top-bar a:hover {
+  color: var(--accent-orange);
+}
+
+
+/* --------------------------------------------------------------------------
+   12. Global Header — Transparent → Solid on Scroll
    -------------------------------------------------------------------------- */
 
 /* ── Base (transparent, sits above hero) ── */
@@ -1026,7 +1120,7 @@ h3 {
   z-index: 100;
   background-color: transparent;
   color: var(--white);
-  transition: background-color 300ms ease, box-shadow 300ms ease, backdrop-filter 300ms ease, -webkit-backdrop-filter 300ms ease;
+  transition: top 300ms ease, background-color 300ms ease, box-shadow 300ms ease, backdrop-filter 300ms ease, -webkit-backdrop-filter 300ms ease;
 }
 
 /* Transparent state: dark text on light hero bg */
@@ -1083,6 +1177,18 @@ h3 {
   .site-header .container {
     padding-top: var(--space-2);
     padding-bottom: var(--space-2);
+  }
+
+  .site-header {
+    top: 38px;
+  }
+
+  .site-header--top-hidden {
+    top: 0;
+  }
+
+  html {
+    scroll-padding-top: 118px;
   }
 }
 
@@ -1360,18 +1466,18 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 35vh;
+  min-height: 30vh;
   background-color: var(--bg-cream);
   color: var(--text-dark);
   text-align: center;
-  padding: calc(72px + var(--space-12)) 0 var(--space-12);
+  padding: calc(72px + 38px + var(--space-8)) 0 var(--space-8);
   overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .page-hero {
-    min-height: 40vh;
-    padding: calc(72px + var(--space-16)) 0 var(--space-16);
+    min-height: 35vh;
+    padding: calc(72px + 38px + var(--space-12)) 0 var(--space-12);
   }
 }
 
@@ -1425,6 +1531,10 @@ h3 {
   color: var(--muted-text);
   max-width: 640px;
   margin: 0 auto;
+}
+
+.page-hero__actions {
+  margin-top: var(--space-8);
 }
 
 
@@ -1642,6 +1752,994 @@ h3 {
 
 
 /* --------------------------------------------------------------------------
+   17. Contact Page — Main Contact Section (2-column)
+   -------------------------------------------------------------------------- */
+
+.contact-main {
+  background-color: var(--bg-soft);
+}
+
+.contact-main__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .contact-main__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-12);
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-main__grid {
+    gap: var(--space-16);
+  }
+}
+
+/* ── Left Column: Form Card ── */
+.contact-main__form-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form-card {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-md);
+}
+
+@media (min-width: 768px) {
+  .contact-form-card {
+    padding: var(--space-12) var(--space-8);
+  }
+}
+
+.contact-form-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: var(--space-8);
+}
+
+/* ── Form Fields ── */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.contact-form__label {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.contact-form__required {
+  color: var(--accent-orange);
+}
+
+.contact-form__input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text-dark);
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+.contact-form__input::placeholder {
+  color: var(--gray-300);
+}
+
+.contact-form__input:focus {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(34, 58, 143, 0.08);
+}
+
+.contact-form__input--error {
+  border-color: #D32F2F;
+}
+
+.contact-form__input--error:focus {
+  border-color: #D32F2F;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.08);
+}
+
+.contact-form__select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235C5C5C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.contact-form__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form__error {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: #D32F2F;
+  min-height: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition), margin var(--transition);
+}
+
+.contact-form__error--visible {
+  max-height: 40px;
+}
+
+.contact-form__submit {
+  align-self: flex-start;
+  margin-top: var(--space-2);
+  min-width: 220px;
+}
+
+@media (max-width: 420px) {
+  .contact-form__submit {
+    width: 100%;
+  }
+}
+
+/* ── Right Column: Info Card ── */
+.contact-main__info-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-info-card {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .contact-info-card {
+    padding: var(--space-12) var(--space-8);
+  }
+}
+
+.contact-info-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-xl), 3vw, var(--text-2xl));
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: var(--space-8);
+}
+
+.contact-info-card__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-bottom: var(--space-8);
+}
+
+.contact-info-card__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.contact-info-card__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-cream);
+  border-radius: 50%;
+  color: var(--accent-orange);
+}
+
+.contact-info-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--muted-text);
+}
+
+.contact-info-card__label {
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+
+.contact-info-card__text a {
+  color: var(--primary-blue);
+  transition: color var(--transition);
+}
+
+.contact-info-card__text a:hover {
+  color: var(--accent-orange);
+}
+
+.contact-info-card__wa {
+  justify-content: center;
+  margin-top: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   18. Contact Page — Google Map
+   -------------------------------------------------------------------------- */
+
+.contact-map {
+  background-color: var(--white);
+  padding-top: 0;
+}
+
+.contact-map__wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .contact-map__wrapper {
+    height: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-map__wrapper {
+    height: 450px;
+  }
+}
+
+.contact-map__wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   19. Contact Page — Success Toast
+   -------------------------------------------------------------------------- */
+
+.contact-toast {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  z-index: 500;
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  padding: var(--space-6) var(--space-8);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease, transform 300ms ease;
+  max-width: calc(100vw - var(--space-8));
+}
+
+.contact-toast--visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+.contact-toast__icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #E8F5E9;
+  border-radius: 50%;
+  color: #2E7D32;
+}
+
+.contact-toast__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-toast__title {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.contact-toast__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--muted-text);
+}
+
+
+/* --------------------------------------------------------------------------
+   20. Consultation Page — 3-Step Booking Process
+   -------------------------------------------------------------------------- */
+
+.consultation-steps {
+  background-color: var(--white);
+}
+
+.consultation-steps__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .consultation-steps__header {
+    margin-bottom: var(--space-16);
+  }
+}
+
+.consultation-steps__title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  color: var(--primary-blue);
+}
+
+.consultation-steps__header .accent-line {
+  margin: 0 auto var(--space-4);
+}
+
+.consultation-steps__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .consultation-steps__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-12);
+  }
+}
+
+.consultation-step {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-8) var(--space-6);
+  background-color: var(--bg-soft);
+  border-radius: var(--radius-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.consultation-step:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.consultation-step__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--accent-orange);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: var(--space-6);
+}
+
+.consultation-step__title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: var(--space-3);
+}
+
+.consultation-step__desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--muted-text);
+}
+
+
+/* --------------------------------------------------------------------------
+   21. Consultation Page — Premium Booking Form
+   -------------------------------------------------------------------------- */
+
+.consultation-form-section {
+  background-color: var(--bg-soft);
+}
+
+.consultation-form-card {
+  background-color: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8) var(--space-6);
+  box-shadow: var(--shadow-lg);
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .consultation-form-card {
+    padding: var(--space-12) var(--space-12);
+  }
+}
+
+.consultation-form-card__title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-3xl));
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: var(--space-10);
+  text-align: center;
+}
+
+/* ── Form Group ── */
+.consultation-form__group {
+  border: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: var(--space-10);
+}
+
+.consultation-form__group-title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-lg), 2.5vw, var(--text-xl));
+  font-weight: 700;
+  color: var(--primary-blue);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--gray-100);
+  width: 100%;
+}
+
+.consultation-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.consultation-form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .consultation-form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.consultation-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.consultation-form__label {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: var(--space-1);
+}
+
+.consultation-form__required {
+  color: var(--accent-orange);
+}
+
+.consultation-form__input {
+  width: 100%;
+  height: 56px;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text-dark);
+  background-color: var(--bg-soft);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  transition: border-color 250ms ease, box-shadow 250ms ease, background-color 250ms ease;
+  outline: none;
+}
+
+.consultation-form__input::placeholder {
+  color: var(--gray-300);
+  font-weight: 400;
+}
+
+.consultation-form__input:focus {
+  border-color: var(--accent-orange);
+  background-color: var(--white);
+  box-shadow: 0 0 0 4px rgba(230, 138, 31, 0.10);
+}
+
+.consultation-form__input--error {
+  border-color: #D32F2F;
+  background-color: #FFF5F5;
+}
+
+.consultation-form__input--error:focus {
+  border-color: #D32F2F;
+  box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.08);
+}
+
+.consultation-form__select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='14' height='10' viewBox='0 0 14 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 2l6 6 6-6' stroke='%235C5C5C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 14px;
+  padding-right: 44px;
+  cursor: pointer;
+}
+
+.consultation-form__textarea {
+  resize: vertical;
+  min-height: 140px;
+  height: auto;
+  padding-top: var(--space-4);
+}
+
+.consultation-form__error {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: #D32F2F;
+  min-height: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition);
+}
+
+.consultation-form__error--visible {
+  max-height: 40px;
+}
+
+.consultation-form__error--radio {
+  margin-top: var(--space-2);
+}
+
+/* ── Premium Submit Button ── */
+.consultation-form__submit {
+  width: 100%;
+  height: 56px;
+  font-size: var(--text-base);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-lg);
+  transition: background-color 250ms ease, transform 250ms ease, box-shadow 250ms ease;
+}
+
+.consultation-form__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 138, 31, 0.35);
+}
+
+.consultation-form__submit:active {
+  transform: translateY(0);
+}
+
+/* ── Radio Button Pills — Premium Selection Cards ── */
+.consultation-form__radios {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .consultation-form__radios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+}
+
+.consultation-form__radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color 250ms ease, background-color 250ms ease, box-shadow 200ms ease;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--muted-text);
+  background-color: var(--bg-soft);
+  min-height: 56px;
+  flex: 1;
+  text-align: center;
+}
+
+.consultation-form__radio:hover {
+  border-color: var(--primary-blue);
+  background-color: var(--white);
+}
+
+.consultation-form__radio input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.consultation-form__radio:has(input:checked) {
+  border-color: var(--primary-blue);
+  background-color: var(--bg-cream);
+  color: var(--primary-blue);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(34, 58, 143, 0.10);
+}
+
+.consultation-form__radio-indicator {
+  display: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   22. Consultation Page — Why Book With BAPA
+   -------------------------------------------------------------------------- */
+
+.consultation-why {
+  background-color: var(--white);
+}
+
+.consultation-why__header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .consultation-why__header {
+    margin-bottom: var(--space-16);
+  }
+}
+
+.consultation-why__title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  color: var(--primary-blue);
+}
+
+.consultation-why__header .accent-line {
+  margin: 0 auto var(--space-4);
+}
+
+.consultation-why__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .consultation-why__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .consultation-why__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.consultation-why__card {
+  background-color: var(--bg-soft);
+  border-radius: var(--radius-md);
+  padding: var(--space-8) var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.consultation-why__card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.consultation-why__icon {
+  color: var(--accent-orange);
+  margin-bottom: var(--space-6);
+  width: 40px;
+  height: 40px;
+}
+
+.consultation-why__card-title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-lg), 2vw, var(--text-xl));
+  font-weight: 600;
+  color: var(--primary-blue);
+  margin-bottom: var(--space-3);
+}
+
+.consultation-why__card-desc {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--muted-text);
+}
+
+
+/* --------------------------------------------------------------------------
+   23. Consultation Page — Premium FAQ Accordion
+   -------------------------------------------------------------------------- */
+
+.consultation-faq {
+  background-color: var(--bg-cream);
+}
+
+.consultation-faq__header {
+  text-align: center;
+  margin-bottom: var(--space-10);
+}
+
+@media (min-width: 768px) {
+  .consultation-faq__header {
+    margin-bottom: var(--space-14);
+  }
+}
+
+.consultation-faq__title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  color: var(--primary-blue);
+}
+
+.consultation-faq__header .accent-line {
+  margin: 0 auto var(--space-4);
+}
+
+.consultation-faq__list {
+  max-width: 740px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.consultation-faq__item {
+  background-color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+  overflow: hidden;
+  transition: box-shadow 300ms ease, border-color 300ms ease;
+}
+
+.consultation-faq__item:hover {
+  border-color: var(--gray-200);
+}
+
+.consultation-faq__item[open] {
+  box-shadow: var(--shadow-md);
+  border-color: transparent;
+}
+
+.consultation-faq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-8);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-dark);
+  cursor: pointer;
+  list-style: none;
+  transition: color 250ms ease;
+  user-select: none;
+}
+
+.consultation-faq__question::-webkit-details-marker {
+  display: none;
+}
+
+.consultation-faq__question:hover {
+  color: var(--accent-orange);
+}
+
+.consultation-faq__arrow {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--accent-orange);
+  transition: transform 300ms ease;
+}
+
+.consultation-faq__item[open] .consultation-faq__arrow {
+  transform: rotate(180deg);
+}
+
+.consultation-faq__answer {
+  padding: 0 var(--space-8) var(--space-8);
+  font-family: var(--font-body);
+  font-size: calc(var(--text-sm) + 1px);
+  line-height: 1.8;
+  color: var(--muted-text);
+}
+
+
+
+
+/* --------------------------------------------------------------------------
+   24. Consultation Page — Reassurance Banner
+   -------------------------------------------------------------------------- */
+
+.consultation-reassurance {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  text-align: center;
+}
+
+.consultation-reassurance__content {
+  max-width: 720px;
+}
+
+.consultation-reassurance__title {
+  font-family: var(--font-heading);
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: var(--space-4);
+}
+
+.consultation-reassurance__subtitle {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--space-8);
+}
+
+.consultation-reassurance__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.consultation-reassurance .btn--lg {
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-sm);
+  min-width: 200px;
+}
+
+@media (max-width: 420px) {
+  .consultation-reassurance .btn--lg {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+.consultation-reassurance__wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--white);
+  background-color: #25D366;
+  border: 1px solid #25D366;
+}
+
+.consultation-reassurance__wa-btn:hover {
+  background-color: #1DA851;
+  border-color: #1DA851;
+}
+
+.consultation-reassurance .btn--outline {
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.consultation-reassurance .btn--outline:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: var(--white);
+}
+
+
+/* --------------------------------------------------------------------------
+   25. Floating WhatsApp Button (All Pages)
+   -------------------------------------------------------------------------- */
+
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #25D366;
+  color: var(--white);
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35), 0 0 0 1px rgba(37, 211, 102, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: transform 250ms ease, box-shadow 250ms ease;
+  animation: wa-float-pulse 8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.5), 0 0 0 2px rgba(37, 211, 102, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.wa-float:active {
+  transform: scale(1.02);
+}
+
+.wa-float svg {
+  width: 30px;
+  height: 30px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.08));
+}
+
+@media (max-width: 767px) {
+  .wa-float {
+    width: 56px;
+    height: 56px;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .wa-float svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@keyframes wa-float-pulse {
+  0%, 92%, 100% {
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35), 0 0 0 1px rgba(37, 211, 102, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  96% {
+    box-shadow: 0 6px 24px rgba(37, 211, 102, 0.50), 0 0 0 2px rgba(37, 211, 102, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
    16. Global Footer
    -------------------------------------------------------------------------- */
 
@@ -1652,14 +2750,14 @@ h3 {
 }
 
 .site-footer .container {
-  padding-top: var(--space-16);
-  padding-bottom: var(--space-8);
+  padding-top: var(--space-20);
+  padding-bottom: var(--space-10);
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-12) var(--space-8);
+  gap: var(--space-12) var(--space-10);
 }
 
 @media (min-width: 640px) {
@@ -1692,16 +2790,17 @@ h3 {
   font-family: var(--font-body);
   font-size: var(--text-sm);
   line-height: 1.7;
-  color: var(--gray-300);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 /* Footer headings */
 .footer-heading {
   font-family: var(--font-heading);
   font-size: var(--text-base);
-  font-weight: 600;
+  font-weight: 700;
   color: var(--white);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+  letter-spacing: 0.02em;
 }
 
 /* Quick links */
@@ -1721,8 +2820,10 @@ h3 {
   position: relative;
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  color: var(--gray-300);
-  transition: color var(--transition);
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 250ms ease, transform 250ms ease;
+  display: inline-block;
+  transform: translateX(0);
 }
 
 .footer-links a::after {
@@ -1733,11 +2834,12 @@ h3 {
   width: 0;
   height: 1px;
   background-color: var(--accent-orange);
-  transition: width var(--transition);
+  transition: width 250ms ease;
 }
 
 .footer-links a:hover {
   color: var(--accent-orange);
+  transform: translateX(4px);
 }
 
 .footer-links a:hover::after {
@@ -1748,7 +2850,7 @@ h3 {
 .footer-contact {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-5);
   font-style: normal;
 }
 
@@ -1756,19 +2858,19 @@ h3 {
   display: flex;
   align-items: flex-start;
   gap: var(--space-3);
-  color: var(--gray-300);
+  color: rgba(255, 255, 255, 0.65);
   line-height: 1.6;
 }
 
 .footer-contact__item svg {
-  margin-top: 2px;
+  margin-top: 3px;
   flex-shrink: 0;
   color: var(--accent-orange);
 }
 
 .footer-contact__item a {
-  color: var(--gray-300);
-  transition: color var(--transition);
+  color: rgba(255, 255, 255, 0.65);
+  transition: color 250ms ease;
 }
 
 .footer-contact__item a:hover {
@@ -1778,8 +2880,9 @@ h3 {
 /* Bottom bar */
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: var(--space-12);
-  padding-top: var(--space-6);
+  margin-top: var(--space-16);
+  padding-top: var(--space-8);
   text-align: center;
   font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.45);
 }
