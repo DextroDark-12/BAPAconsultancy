@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.12.0] — 2026-06-26
+
+### Changed
+
+- **Top bar refined** — Background changed to dark navy (#111C38), height increased to 40px, column order reordered to Email (left) | Hours (center) | Phone (right) across all 4 pages
+- **Accent line redesigned** — Width 56px (was 48px), height 4px (was 3px), border-radius 999px, subtle warm box-shadow glow for premium feel
+- **Card hover effects enhanced globally** — All interactive cards now lift `translateY(-6px)` with deeper shadow + subtle golden ambient glow (`box-shadow` layered with orange rgba)
+- **New `--transition-smooth` custom property** (300ms ease) wired into all card transitions for smoother interactions
+- **FAQ accordion hover** added — subtle shadow + golden glow on hover, consistent with card pattern
+- **Navbar/site-header top** updated 38px→40px, scroll-padding-top 118px→120px, page-hero padding updated to match new top bar height
+
+---
+
+## [0.11.0] — 2026-06-26
+
+### Changed
+
+- **Homepage social-proof section replaced** — Old "Trusted By Clients Across Industries" section (stats row + 3 placeholder testimonial cards) fully removed
+- **New "Trusted by Businesses" section** inserted between Who We Serve and Why Businesses Trust BAPA
+  - 4 premium stat cards (white background, rounded corners, hover lift): 1000+ Tax Filings, 250+ Businesses Served, 4+ Countries Served, 10+ Years Combined Expertise
+  - Counter animation via IntersectionObserver: animates 0→target with ease-out cubic (1200ms, once only)
+  - Seamless marquee with 10 expertise badge pills (GST Compliance, Income Tax Advisory, SOP Accounting, KPO Services, Global Clients, Business Advisory, Audit Support, Legal Compliance, Financial Reporting, Tax Planning)
+  - Badge style: pill-shaped, white bg, subtle border, orange star icon, blue text
+  - Marquee animation: 30s linear infinite scroll, pauses on hover, edge fade gradient masks
+- **Nav link updated**: "Testimonials" → "Results" (points to new #trusted section) in desktop nav, mobile drawer, and footer
+
+### Removed
+
+- Old CSS section 9 (`.proof`, `.proof-stat`, `.testimonial-card` and all related classes) — replaced with new `.trusted` section CSS
+- All placeholder testimonial cards with `[CLIENT TESTIMONIAL]` / `[CLIENT NAME]` content
+
+---
+
 ## [0.10.0] — 2026-06-26
 
 ### Changed

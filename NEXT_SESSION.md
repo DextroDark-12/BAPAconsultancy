@@ -1,24 +1,40 @@
 # Next Session — Carryover Notes
 
-## Current Status (v0.10)
+## Current Status (v0.11)
 
-| Section                 | Status      | Details                                    |
-|-------------------------|-------------|--------------------------------------------|
-| Navbar                  | ✅ Built    | Synced, active state, smooth top-bar-driven top transition |
-| Top Contact Bar         | ✅ Built    | Fixed position, slides up on scroll, reappears at top |
-| Hero                    | ✅ Built    | Corporate professional copy, locked        |
-| Services                | ✅ Built    | 3 premium cards, soft bg                   |
-| Who We Serve            | ✅ Built    | Split layout, cream bg                     |
-| Trust                   | ✅ Built    | 4 trust cards, grid layout                 |
-| Testimonials            | ✅ Built    | Stats row + 3 testimonial placeholders     |
-| CTA Banner              | ✅ Built    | Full-width blue, two CTAs, reduced padding |
-| **Footer**              | ✅ Built    | Refined spacing, heading weight, link hover shift, better contrast |
-| **About**               | ❌ Pending  | Goes after Hero — layout locked            |
-| **Contact Page**        | ✅ Built    | Full page: form, info card, map, validation, toast |
-| **Services Page**       | ✅ Built    | 3 service categories + Why Outsource, hero, CTA  |
-| **Consultation Page**   | ✅ Built    | Premium form + FAQ, reassurance banner      |
-| **WhatsApp Float**      | ✅ Built    | Cosmo-style premium: multi-layer shadow, glass edge, 8s pulse |
-| **Design System**       | ✅ Built    | --radius-lg, --radius-xl, --shadow-lg, unified green CTAs |
+| Section                    | Status      | Details                                    |
+|----------------------------|-------------|--------------------------------------------|
+| Navbar                     | ✅ Built    | Synced, active state, smooth top-bar-driven top transition |
+| Top Contact Bar            | ✅ Built    | Fixed position, slides up on scroll, reappears at top |
+| Hero                       | ✅ Built    | Corporate professional copy, locked        |
+| Services                   | ✅ Built    | 3 premium cards, soft bg                   |
+| Who We Serve               | ✅ Built    | Split layout, cream bg                     |
+| **Trusted by Businesses**  | ✅ Built    | Premium stats (4 cards, counter animation) + endless marquee |
+| Trust                      | ✅ Built    | 4 trust cards, grid layout                 |
+| CTA Banner                 | ✅ Built    | Full-width blue, two CTAs, reduced padding |
+| **Footer**                 | ✅ Built    | Refined spacing, heading weight, link hover shift, better contrast |
+| **About**                  | ❌ Pending  | Goes after Hero — layout locked            |
+| **Contact Page**           | ✅ Built    | Full page: form, info card, map, validation, toast |
+| **Services Page**          | ✅ Built    | 3 service categories + Why Outsource, hero, CTA  |
+| **Consultation Page**      | ✅ Built    | Premium form + FAQ, reassurance banner      |
+| **WhatsApp Float**         | ✅ Built    | Cosmo-style premium: multi-layer shadow, glass edge, 8s pulse |
+| **Design System**          | ✅ Built    | --radius-lg, --radius-xl, --shadow-lg, unified green CTAs |
+| **Old Testimonials**       | 🗑️ Removed  | Replaced by Trusted by Businesses section  |
+
+## New: Trusted by Businesses Section
+
+### Stats (4 premium cards)
+- 1000+ Tax Filings
+- 250+ Businesses Served
+- 4+ Countries Served
+- 10+ Years Combined Expertise
+
+### Marquee (10 expertise badges, seamless scroll)
+- GST Compliance, Income Tax Advisory, SOP Accounting, KPO Services, Global Clients, Business Advisory, Audit Support, Legal Compliance, Financial Reporting, Tax Planning
+
+### Behavior
+- Stats animate 0→target on viewport entry (IntersectionObserver, ease-out cubic, 1200ms)
+- Marquee: 30s linear infinite scroll, pauses on hover, edge fade masks
 
 ## Ready to Build (Next Priority)
 

@@ -42,25 +42,25 @@ const BAPA = (() => {
       if (window.scrollY > 60) {
         topBar.classList.add('top-bar--hidden');
         if (header) header.classList.add('site-header--top-hidden');
-        document.documentElement.style.scrollPaddingTop = '80px';
+        document.documentElement.style.setProperty('--scroll-padding', '80px');
       } else {
         topBar.classList.remove('top-bar--hidden');
         if (header) header.classList.remove('site-header--top-hidden');
         if (window.innerWidth >= 768) {
-          document.documentElement.style.scrollPaddingTop = '118px';
+          document.documentElement.style.setProperty('--scroll-padding', '120px');
+        } else {
+          document.documentElement.style.setProperty('--scroll-padding', '80px');
         }
       }
     };
 
     window.addEventListener('scroll', checkScroll, { passive: true });
-    checkScroll(); // check initial state
+    checkScroll();
 
-    // Handle resize: reset scroll-padding-top on mobile
     window.addEventListener('resize', () => {
       if (window.innerWidth < 768) {
-        document.documentElement.style.scrollPaddingTop = '80px';
+        document.documentElement.style.setProperty('--scroll-padding', '80px');
       } else {
-        // Re-check scroll state
         checkScroll();
       }
     });
@@ -402,7 +402,68 @@ const BAPA = (() => {
   };
 
   // -----------------------------------------------------------------------
-  // 5. FAQ Accordion — smooth arrow animation is handled by CSS
+  // 5. Counter Animation — Stats Section
+  // -----------------------------------------------------------------------
+
+  const initCounterAnimation = () => {
+    const counters = document.querySelectorAll('.trusted-stat__count');
+    if (!counters.length) return;
+
+    let animationStarted = false;
+
+    const animateCounters = () => {
+      if (animationStarted) return;
+      animationStarted = true;
+
+      counters.forEach((el) => {
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        if (isNaN(target)) return;
+
+        const duration = 1200; // ms
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Ease-out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.round(eased * target);
+          el.textContent = currentVal;
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        };
+
+        requestAnimationFrame(update);
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            animateCounters();
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.3 }
+      );
+
+      // Observe the parent section
+      const section = document.querySelector('.trusted');
+      if (section) {
+        observer.observe(section);
+      }
+    } else {
+      // Fallback: start animation immediately
+      animateCounters();
+    }
+  };
+
+  // -----------------------------------------------------------------------
+  // 6. FAQ Accordion — smooth arrow animation is handled by CSS
   //    (Native <details>/<summary> is progressively enhanced)
   // -----------------------------------------------------------------------
 
@@ -434,6 +495,7 @@ const BAPA = (() => {
     initDrawer();
     initContactForm();
     initConsultationForm();
+    initCounterAnimation();
     initFaqAccordion();
   };
 
