@@ -1,19 +1,82 @@
 # Changelog
 
+## [0.6.2] — 2026-06-26
+
+### Changed
+
+- **Navbar synced** across homepage and services page — identical HTML structure, logo markup, nav links, and mobile drawer
+
+---
+
+## [0.6.1] — 2026-06-26
+
+### Added
+
+- **Services Page** (`services.html`) — Full page with 3 service categories + Why Outsource section
+  - Page hero: "Our Services" with centered heading and subtitle
+  - Accounting & Bookkeeping (4 cards): SOP-Based Accounting, Financial Statements, Payroll, Bank Reconciliation
+  - Tax Consultancy (4 cards): GST, Income Tax, TDS, Tax Planning — with path-based SVG icons
+  - KPO Services (4 cards): Outsourced Bookkeeping, Management Accounts, AP/AR, Virtual CFO
+  - Why Outsource to BAPA (4 value cards): Cost Efficiency, Skilled Professionals, Faster Turnaround, Scalable Support
+  - Reused existing navbar, footer, CTA banner, and scroll behavior
+
+### Fixed
+
+- **Heading hierarchy**: "Our Services" now proper `<h1>`, subtitle is `<p>` (was inverted)
+- **CSS section numbering**: Footer renumbered 12→16 for sequential numbering (11→13→14→15→16)
+- **Nav anchor hack**: Removed hidden `#contact` div, all Contact links now point to `contact.html`
+- **SVG text dependency**: Replaced GST/ITR/TDS `<text>` elements with font-independent path icons
+
+---
+
+## [0.6.0] — 2026-06-26
+
+### Added
+
+- **Hero copy refactored** for corporate professional tone
+  - Badge: "ACCOUNTING • TAX • KPO" with pill styling
+  - Headline: "Precision in Accounting. / Confidence in Compliance." — intentional 2-line
+  - Subheadline: Professional trust-focused copy
+  - Secondary CTA: "Book Consultation"
+  - Removed unused `.hero__title-accent` and `.hero__br` CSS
+
+### Changed
+
+- `navbar-logo.png` cropped from 1024×1536 → 462×362 to remove 95.3% empty transparent padding
+- Logo CSS height: mobile 36px→48px, desktop 48px→56px
+
+### Fixed
+
+- Root cause of tiny navbar logo identified: source asset had massive transparent canvas, not CSS
+- Logo image now tightly cropped with 10px balanced padding, preserving RGBA
+
+### Documentation
+
+- PROJECT_CONTEXT.md updated to v0.6 — homepage architecture locked, final hero copy, navbar behavior, logo decision, services page architecture, contact page decision
+- NEXT_SESSION.md updated with current status and next priorities
+
+---
+
+## [0.5.0] — 2026-06-26
+
+### Changed
+
+- Finalized brand direction as warm premium consultancy
+- Fully moved away from dark luxury theme
+- Locked final color palette based on live BAPA website
+- Added Book Consultation as navbar CTA direction
+
+---
+
 ## [0.3.0] — 2026-06-25
 
 ### Added
 
-- **Services Section ("What We Do")** — 3 premium service cards: Accounting & Bookkeeping, Tax Consultancy, KPO Services
-  - Each card includes inline SVG icon, Playfair Display heading, description, and animated "Learn More" arrow link
-  - Mobile-first grid: 1 column → 3 columns at 768px
-  - Off-white (`--off-white`) section background
-  - Subtle hover elevation: `translateY(-4px)` + `--shadow-md`
-  - Gold icon color, uppercase link with arrow slide animation
+- **Services Section ("What We Do")** — 3 premium service cards
 
 ### Changed
 
-- Section numbering in `styles.css` updated: Services → 6, Header → 7, Footer → 8
+- Section numbering in `styles.css` updated
 
 ---
 
@@ -21,20 +84,11 @@
 
 ### Added
 
-- **Hero Section** — Full-viewport hero with premium law-firm aesthetic
-  - `min-height: 70vh` with flexbox centering
-  - Deep navy (`--navy`) background with CSS-only subtle diagonal pattern overlay (`repeating-linear-gradient` at 1.2% opacity)
-  - "Trusted Counsel" tagline badge with gold border
-  - Playfair Display heading with gold-accented second line
-  - Inter subheading at 300 weight for refined readability
-  - Two CTA buttons: "Explore Services" (gold primary) and "Get in Touch" (outline)
-  - Hero-specific button hover overrides to prevent disappearing on navy background
+- **Hero Section** — Full-viewport hero
 
 ### Fixed
 
-- Undefined `--space-10` CSS variable → replaced with `--space-8`
-- Section numbering drift in `styles.css` comments
-- Primary button hover invisibility on navy hero background
+- Undefined `--space-10` → `--space-8`
 
 ---
 
@@ -42,8 +96,5 @@
 
 ### Added
 
-- Project scaffold with `index.html`, `styles.css`, `script.js`
-- Mobile-first CSS reset and custom properties (`--navy`, `--gold`, `--white`, `--off-white`)
-- Playfair Display + Inter font integration
-- Base HTML skeleton with semantic landmarks (`<header>`, `<main>`, `<footer>`, `<nav>`)
-- Documentation files: `PROJECT_CONTEXT.md`, `CHANGELOG.md`, `NEXT_SESSION.md`
+- Project scaffold
+- Documentation files

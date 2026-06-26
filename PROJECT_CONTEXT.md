@@ -1,5 +1,7 @@
 # BAPA Consultancy — Project Context
 
+## Version 0.6 — Homepage Architecture Locked
+
 ## Overview
 
 Premium consultancy website for BAPA Consultancy — warm, clean, trustworthy, and approachable. Modernized version of the client's existing brand identity. Not a dark luxury law-firm aesthetic.
@@ -10,19 +12,20 @@ Premium consultancy website for BAPA Consultancy — warm, clean, trustworthy, a
 - **CSS** — Vanilla, mobile-first, CSS custom properties
 - **JavaScript** — Vanilla ES6+, no frameworks
 
-## Updated Design Direction (v0.5)
+## Final Design Direction
 
 Brand direction is finalized.
 
-This website is **NOT** following a dark luxury law-firm aesthetic anymore.
+This website is **NOT** following a dark luxury law-firm aesthetic.
 
 Final design direction:
-- Warm premium consultancy
-- Clean
+- Corporate professional
 - Trustworthy
-- Professional
-- Approachable
-- Modernized version of client's existing brand identity
+- Competent
+- Clear
+- Regulatory expertise
+- Not luxury
+- Not overly marketing-heavy
 
 We are preserving BAPA's existing brand colors from live website.
 
@@ -75,17 +78,49 @@ All styles live in `styles.css` in this order:
 8. Who We Serve Section ("Who We Serve" — split layout)
 9. Social Proof / Testimonials Section
 10. CTA Banner — Full-Width
-11. Global Header & Navigation — Transparent → Solid on Scroll
+11. Global Header & Navigation — Transparent → Cream Glass on Scroll
 12. Global Footer
 
-## Sections Built (v0.5.0)
+## Final Homepage Structure
+
+1. Navbar
+2. Hero
+3. About BAPA _(pending)_
+4. What We Do / Services Strip
+5. Why Choose Us
+6. Who We Serve
+7. Testimonials
+8. CTA Banner
+9. Footer
+
+### About Section (Locked)
+
+**Position:** Immediately after Hero
+
+**Layout:**
+Desktop:
+- Left column → company intro
+- Right column → stats cards
+
+Mobile:
+- Stacked layout
+
+**Stats:**
+- 100+ Tax Filings
+- 250+ Businesses Served
+- 4+ Countries Served
+- Advocate-Led Expertise
+
+## Sections Built (v0.6.0)
 
 ### Hero (#hero)
 - Light cream (`--bg-cream`) background
 - CSS-only subtle diagonal blue pattern overlay
-- "Trusted Counsel" tagline badge with blue border
-- Playfair Display heading with orange accent
-- Inter subheading, two CTA buttons (Explore Services, Get in Touch)
+- **Badge:** "ACCOUNTING • TAX • KPO" — pill shape, uppercase, subtle corporate styling
+- **Headline:** "Precision in Accounting." / "Confidence in Compliance." — intentional 2-line with `<br>` break
+- **Subheadline:** Advocate-backed accounting, tax consultancy, and global KPO services helping businesses operate with financial clarity and regulatory confidence.
+- **CTA:** Explore Services (primary orange) + Book Consultation (outline orange)
+- **Style:** Corporate professional — NOT luxury, NOT marketing-heavy
 
 ### Services (#services)
 - "What We Do" section on `--bg-soft` background
@@ -110,23 +145,80 @@ All styles live in `styles.css` in this order:
 ### CTA Banner
 - Full-width blue banner with heading and two CTA buttons
 
-## Navbar Architecture
+## Final Navbar Behavior
 
-Desktop:
+### Desktop
 - Left: Logo
 - Center: Navigation links (Home, Services, Who We Serve, Why Trust Us, Testimonials, Contact)
 - Right: "Book Consultation" CTA button (filled orange, 48px height, 12px radius)
 
-Behavior:
-- Transparent over hero
-- Solid primary-blue on scroll
-- Subtle shadow
-- Smooth 300ms transition
+### Scroll Behavior
+**Top of page:**
+- Transparent background
+- No shadow
+- Overlays hero
 
-Mobile:
+**Scrolled (~60px):**
+- `background: rgba(244, 235, 221, 0.92);`
+- `backdrop-filter: blur(12px);`
+- `box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);`
+- Smooth 300ms transition
+- No flicker, no layout shift
+
+**Status:** Scroll behavior is working correctly.
+
+### Mobile
 - Right-side sliding drawer (320px)
 - Overlay backdrop
 - Close on: overlay click, nav link click, close button, Escape key
+
+### Logo Decision
+**Navbar:** Use ONLY `navbar-logo.png`.
+
+**Important audit finding:** Current logo asset contained 95.3% transparent empty space. Root cause was asset export, not navbar CSS. The image was cropped from 1024×1536 → 462×362 px to remove excess padding. CSS height set to 48px mobile / 56px desktop.
+
+**Do NOT redesign navbar for logo size.**
+
+## Contact Page Decision
+
+### Phase 1 (Current)
+- Frontend only
+- Form behavior: JS validation, fake submit, success toast
+- No backend yet
+- n8n integration later
+
+### Future Automation
+
+Book Consultation CTA will eventually connect to n8n workflow:
+Website Form → Webhook → n8n → Google Sheets / CRM → WhatsApp Alert → Email Confirmation → Calendar Booking
+
+## Services Page Architecture (Locked)
+
+### Hero
+- Title: Our Services
+- Subtitle: Comprehensive accounting, taxation, and outsourcing solutions tailored for modern businesses.
+
+### Categories
+
+**1. Accounting & Bookkeeping**
+- SOP-Based Accounting
+- Financial Statement Preparation
+- Payroll Processing
+- Bank Reconciliation
+
+**2. Tax Consultancy**
+- GST Registration & Returns
+- Income Tax Filing
+- TDS Compliance
+- Tax Planning & Advisory
+
+**3. KPO Services**
+- Outsourced Bookkeeping
+- Management Accounts
+- AP/AR Management
+- Virtual CFO Services
+
+**Extra section:** Why Outsource to BAPA? → YES
 
 ## File Structure
 
@@ -135,13 +227,9 @@ Mobile:
 ├── index.html                         # Entry point — all sections
 ├── styles.css                         # All styles (12 sections)
 ├── script.js                          # Scroll header + mobile drawer logic
-├── Screenshot 2026-06-25 182430.png   # Logo image (temporary — needs replacement)
+├── navbar-logo.png                    # Navbar logo (cropped 462×362)
+├── Screenshot 2026-06-25 182430.png   # Old logo (still used in footer)
 ├── PROJECT_CONTEXT.md                 # This file
 ├── CHANGELOG.md                       # Version history
 └── NEXT_SESSION.md                    # Carry-over notes
 ```
-
-## Future Automation
-
-Book Consultation CTA will eventually connect to n8n workflow:
-Website Form → Webhook → n8n → Google Sheets / CRM → WhatsApp Alert → Email Confirmation → Calendar Booking

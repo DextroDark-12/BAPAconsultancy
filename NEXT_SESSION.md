@@ -1,36 +1,46 @@
 # Next Session — Carryover Notes
 
-## Current Status
+## Current Status (v0.6)
 
-| Section       | Status      | Details                          |
-|---------------|-------------|----------------------------------|
-| Hero          | ✅ Built    | Navy bg, diagonal overlay, CTAs  |
-| Services      | ✅ Built    | 3 premium cards, off-white bg    |
-| Header/Nav    | 🟡 Partial  | Sticky, text logo, mobile toggle |
-| Footer        | 🟡 Partial  | Grid layout, legal placeholders  |
-| **About**     | ❌ Pending  | Empty placeholder                |
-| **Expertise** | ❌ Pending  | Empty placeholder                |
-| **Contact**   | ❌ Pending  | Empty placeholder                |
+| Section         | Status      | Details                                    |
+|-----------------|-------------|--------------------------------------------|
+| Navbar          | ✅ Built    | Transparent→cream glass scroll, logo fixed  |
+| Hero            | ✅ Built    | Corporate professional copy, locked        |
+| Services        | ✅ Built    | 3 premium cards, soft bg                   |
+| Who We Serve    | ✅ Built    | Split layout, cream bg                     |
+| Trust           | ✅ Built    | 4 trust cards, grid layout                 |
+| Testimonials    | ✅ Built    | Stats row + 3 testimonial placeholders     |
+| CTA Banner      | ✅ Built    | Full-width blue, two CTAs                  |
+| Footer          | ✅ Built    | Rich 4-col grid, contact, legal            |
+| **About**       | ❌ Pending  | Goes after Hero — layout locked            |
+| **Contact Page**| ❌ Pending  | Phase 1: frontend only, JS validation      |
+| **Services Page**| ✅ Built    | 3 service categories + Why Outsource, hero, CTA  |
 
 ## Ready to Build (Next Priority)
 
-- [ ] **About section** — Firm story, credibility markers, advocate credentials
-- [ ] **Contact section** — Form fields or CTA block with contact details
-- [ ] **Expertise / Stats strip** — Metrics or practice areas between services and about
-- [ ] **Navigation refinements** — Right-side sliding drawer, backdrop overlay, transparent→solid on scroll
-- [ ] **Footer polish** — Add social links, phone, email, address
+### 1. About Section (Highest Priority)
 
-## Design Details to Decide
+- Goes immediately after Hero on homepage
+- Desktop: left column (company intro) + right column (stats cards)
+- Mobile: stacked layout
+- Stats: 100+ Tax Filings, 250+ Businesses Served, 4+ Countries Served, Advocate-Led Expertise
 
-- Contact form fields vs. "Get in Touch" button linking to email/WhatsApp
-- Whether to include a testimonials / case-studies section
-- Whether to add an FAQ accordion section
+### 2. Contact Page (Phase 1)
+
+- Frontend only — no backend
+- Form behavior: JS validation, fake submit, success toast
+- n8n integration later
+
+## Logo Reminder
+
+- Navbar: `navbar-logo.png` (cropped 462×362)
+- Footer: still uses `Screenshot 2026-06-25 182430.png` — should be updated to same asset
 
 ## Technical Reminders
 
 - All new section styles go into `styles.css` under a matching section comment
 - Use `clamp()` for fluid type sizes
-- Gold (`--gold`) on no more than ~15% of any viewport
-- No gradients — stick to solid colour blocks (hero diagonal pattern is the only exception)
+- Orange on no more than ~5% of any viewport
+- No gradients
 - Test at 375px, 768px, 1024px, 1280px
 - New sections should be mobile-first, single-column → multi-column at 768px
