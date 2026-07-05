@@ -486,6 +486,433 @@ const BAPA = (() => {
   };
 
   // -----------------------------------------------------------------------
+  // 7. Welcome Popup — Production Logic
+  // -----------------------------------------------------------------------
+
+  // ── Development override ──
+  // Set to false for production.
+  // When true: ignores all storage — popup appears on every page refresh.
+  // When false: session-based tracking (once per session) + 7-day localStorage for checkbox.
+  const DEV_MODE = true;
+
+  const POPUP_STORAGE_KEY = 'bapa_welcome_popup';
+  const POPUP_SESSION_KEY = 'bapa_popup_shown';
+  const POPUP_DELAY_MS = 900;
+  const POPUP_EXPIRY_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
+
+  let popupOpen = false;
+  let previousActiveElement = null;
+
+  // Scrollbar width cache (computed once)
+  let scrollbarWidth = 0;
+
+  const getScrollbarWidth = () => {
+    if (scrollbarWidth > 0) return scrollbarWidth;
+    scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    return scrollbarWidth;
+  };
+
+  const lockBodyScroll = () => {
+    const sbw = getScrollbarWidth();
+    document.body.style.overflow = 'hidden';
+    document.body.style.paddingRight = sbw + 'px';
+  };
+
+  const unlockBodyScroll = () => {
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+  };
+
+  const shouldShowPopup = () => {
+    if (DEV_MODE) {
+      return true;
+    }
+
+    try {
+      // Priority 1: 7-day localStorage suppression (checkbox checked)
+      const stored = localStorage.getItem(POPUP_STORAGE_KEY);
+      if (stored) {
+        const timestamp = parseInt(stored, 10);
+        if (!isNaN(timestamp) && Date.now() - timestamp <= POPUP_EXPIRY_MS) {
+          return false;
+        }
+      }
+
+      // Priority 2: Already shown this session (normal close)
+      if (sessionStorage.getItem(POPUP_SESSION_KEY)) {
+        return false;
+      }
+
+      // Priority 3: Show popup
+      return true;
+    } catch {
+      // Storage unavailable (private browsing, etc.)
+      return true;
+    }
+  };
+
+  const setPopupDismissed = () => {
+    try {
+      localStorage.setItem(POPUP_STORAGE_KEY, String(Date.now()));
+      sessionStorage.setItem(POPUP_SESSION_KEY, '1');
+    } catch {
+      // Silently fail
+    }
+  };
+
+  const setPopupShownSession = () => {
+    try {
+      sessionStorage.setItem(POPUP_SESSION_KEY, '1');
+    } catch {
+      // Silently fail
+    }
+  };
+
+  const resetPopupState = () => {
+    try {
+      localStorage.removeItem(POPUP_STORAGE_KEY);
+      sessionStorage.removeItem(POPUP_SESSION_KEY);
+      console.log('[BAPA Popup] State reset — popup will appear on next page load');
+    } catch {
+      // Silently fail
+    }
+  };
+
+  const getFocusableElements = (container) => {
+    const selectors = [
+      'a[href]',
+      'button:not([disabled])',
+      'input:not([disabled])',
+      'textarea:not([disabled])',
+      'select:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ];
+    const elements = container.querySelectorAll(selectors.join(','));
+    return Array.from(elements).filter(
+      (el) => el.offsetParent !== null // visible
+    );
+  };
+
+  const openPopup = (popup) => {
+    if (!popup || popupOpen) return;
+    popupOpen = true;
+
+    // Store currently focused element
+    previousActiveElement = document.activeElement;
+
+    // Show popup
+    popup.classList.add('welcome-popup--visible');
+    popup.setAttribute('aria-hidden', 'false');
+
+    // Lock background scroll
+    lockBodyScroll();
+
+    // Focus first focusable element inside popup
+    requestAnimationFrame(() => {
+      const focusable = getFocusableElements(popup);
+      if (focusable.length > 0) {
+        focusable[0].focus();
+      }
+    });
+  };
+
+  const closePopup = (popup) => {
+    if (!popup || !popupOpen) return;
+    popupOpen = false;
+
+    // Hide popup
+    popup.classList.remove('welcome-popup--visible');
+    popup.setAttribute('aria-hidden', 'true');
+
+    // Unlock background scroll
+    unlockBodyScroll();
+
+    // Restore focus to previous element
+    if (previousActiveElement && typeof previousActiveElement.focus === 'function') {
+      previousActiveElement.focus();
+    }
+    previousActiveElement = null;
+  };
+
+  const initWelcomePopup = () => {
+    const popup = document.querySelector('.welcome-popup');
+    if (!popup) return;
+
+    // ── Expose dev helper globally ──
+    if (DEV_MODE) {
+      window.resetPopup = resetPopupState;
+    }
+
+    // ── Check display conditions ──
+    if (!shouldShowPopup()) return;
+
+    // ── Show popup after delay ──
+    let showTimer = setTimeout(() => {
+      openPopup(popup);
+    }, POPUP_DELAY_MS);
+
+    // ── Close button (session-only, not 7-day) ──
+    const closeBtn = popup.querySelector('[data-welcome-close]');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        setPopupShownSession();
+        closePopup(popup);
+      });
+    }
+
+    // ── ESC key (session-only, not 7-day) ──
+    const handleKeydown = (e) => {
+      if (e.key === 'Escape' && popupOpen) {
+        setPopupShownSession();
+        closePopup(popup);
+        return;
+      }
+
+      // Focus trap: Tab and Shift+Tab
+      if (e.key === 'Tab' && popupOpen) {
+        const focusable = getFocusableElements(popup);
+        if (focusable.length === 0) {
+          e.preventDefault();
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeydown);
+
+    // ── Outside click (overlay, session-only) ──
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup && popupOpen) {
+        setPopupShownSession();
+        closePopup(popup);
+      }
+    });
+
+    // ── Dismiss checkbox ──
+    const checkbox = popup.querySelector('[data-welcome-dismiss]');
+    if (checkbox) {
+      checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+          setPopupDismissed();
+        }
+      });
+    }
+
+    // ── Pause/resume timer on tab visibility change ──
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && !popupOpen) {
+        clearTimeout(showTimer);
+        showTimer = null;
+      } else if (!document.hidden && !popupOpen && !showTimer) {
+        showTimer = setTimeout(() => {
+          openPopup(popup);
+        }, POPUP_DELAY_MS);
+      }
+    });
+
+    // ── Cleanup on navigate ──
+    window.addEventListener('beforeunload', () => {
+      clearTimeout(showTimer);
+      unlockBodyScroll();
+    });
+  };
+
+  // -----------------------------------------------------------------------
+  // 8. Client Success Page — Interactive Elements
+  // -----------------------------------------------------------------------
+
+  const initClientSuccessGallery = () => {
+    const lightbox = document.getElementById('csLightbox');
+    const lightboxImg = lightbox ? lightbox.querySelector('.cs-lightbox__img') : null;
+    const lightboxClose = lightbox ? lightbox.querySelector('.cs-lightbox__close') : null;
+    const galleryItems = document.querySelectorAll('.cs-gallery__item');
+
+    if (!lightbox || !lightboxImg) return;
+
+    // Open lightbox on image click
+    galleryItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        if (img) {
+          lightboxImg.src = img.src;
+          lightboxImg.alt = img.alt;
+          lightbox.classList.add('cs-lightbox--visible');
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+
+    // Close lightbox
+    const closeLightbox = () => {
+      lightbox.classList.remove('cs-lightbox--visible');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', closeLightbox);
+    }
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox || e.target.classList.contains('cs-lightbox__overlay')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('cs-lightbox--visible')) {
+        closeLightbox();
+      }
+    });
+  };
+
+  const initClientSuccessVideos = () => {
+    const modal = document.getElementById('csVideoModal');
+    const modalClose = modal ? modal.querySelector('.cs-video-modal__close') : null;
+    const videoCards = document.querySelectorAll('.cs-video-card');
+
+    if (!modal) return;
+
+    // Open modal on video card click
+    videoCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        modal.classList.add('cs-video-modal--visible');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close modal
+    const closeModal = () => {
+      modal.classList.remove('cs-video-modal--visible');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    if (modalClose) {
+      modalClose.addEventListener('click', closeModal);
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.classList.contains('cs-video-modal__overlay')) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('cs-video-modal--visible')) {
+        closeModal();
+      }
+    });
+  };
+
+  const initClientSuccessLoadMore = () => {
+    // Load More Reviews
+    const loadReviewsBtn = document.getElementById('csLoadMoreReviews');
+    if (loadReviewsBtn) {
+      loadReviewsBtn.addEventListener('click', () => {
+        // Placeholder: Future integration with Google Reviews API
+        loadReviewsBtn.textContent = 'No More Reviews';
+        loadReviewsBtn.disabled = true;
+        loadReviewsBtn.style.opacity = '0.5';
+        loadReviewsBtn.style.cursor = 'not-allowed';
+      });
+    }
+
+    // Load More Photos
+    const loadPhotosBtn = document.getElementById('csLoadMorePhotos');
+    if (loadPhotosBtn) {
+      loadPhotosBtn.addEventListener('click', () => {
+        // Placeholder: Future integration
+        loadPhotosBtn.textContent = 'No More Photos';
+        loadPhotosBtn.disabled = true;
+        loadPhotosBtn.style.opacity = '0.5';
+        loadPhotosBtn.style.cursor = 'not-allowed';
+      });
+    }
+
+    // Load More Videos
+    const loadVideosBtn = document.getElementById('csLoadMoreVideos');
+    if (loadVideosBtn) {
+      loadVideosBtn.addEventListener('click', () => {
+        // Placeholder: Future integration
+        loadVideosBtn.textContent = 'No More Videos';
+        loadVideosBtn.disabled = true;
+        loadVideosBtn.style.opacity = '0.5';
+        loadVideosBtn.style.cursor = 'not-allowed';
+      });
+    }
+  };
+
+  const initClientSuccessCounters = () => {
+    const counters = document.querySelectorAll('.cs-achievement-card__count');
+    if (!counters.length) return;
+
+    let animationStarted = false;
+
+    const animateCounters = () => {
+      if (animationStarted) return;
+      animationStarted = true;
+
+      counters.forEach((el) => {
+        const target = parseInt(el.getAttribute('data-target'), 10);
+        if (isNaN(target)) return;
+
+        const duration = 1200;
+        const startTime = performance.now();
+
+        const update = (currentTime) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target);
+
+          if (progress < 1) {
+            requestAnimationFrame(update);
+          }
+        };
+
+        requestAnimationFrame(update);
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            animateCounters();
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.3 }
+      );
+
+      const section = document.querySelector('.cs-achievements');
+      if (section) {
+        observer.observe(section);
+      }
+    } else {
+      animateCounters();
+    }
+  };
+
+  // -----------------------------------------------------------------------
   // Initialisation
   // -----------------------------------------------------------------------
 
@@ -497,6 +924,11 @@ const BAPA = (() => {
     initConsultationForm();
     initCounterAnimation();
     initFaqAccordion();
+    initWelcomePopup();
+    initClientSuccessGallery();
+    initClientSuccessVideos();
+    initClientSuccessLoadMore();
+    initClientSuccessCounters();
   };
 
   if (document.readyState === 'loading') {
