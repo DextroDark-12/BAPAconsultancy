@@ -252,10 +252,20 @@ const BAPA = (() => {
 
     // Set min date for date picker (no past dates)
     const dateInput = document.getElementById('cons-date');
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
     if (dateInput) {
-      dateInput.min = tomorrow.toISOString().split('T')[0];
+      const today = new Date();
+      const todayStr = new Date(today.getTime() - (today.getTimezoneOffset() * 60000)).toISOString().split('T')[0];
+      dateInput.min = todayStr;
+
+      dateInput.addEventListener('input', (e) => {
+        if (!e.target.value) return;
+        const selectedDate = new Date(e.target.value);
+        const day = selectedDate.getUTCDay();
+        if (day === 0 || day === 6) {
+          alert('Weekend appointments are not available. Please select a date from Monday to Friday.');
+          e.target.value = '';
+        }
+      });
     }
 
     const fields = {
@@ -314,37 +324,48 @@ const BAPA = (() => {
       return isValid;
     };
 
-    const showToast = () => {
+    const showPopup = (title, message, isSuccess = true) => {
       const existing = document.querySelector('.contact-toast');
       if (existing) existing.remove();
 
-      const toast = document.createElement('div');
-      toast.className = 'contact-toast';
-      toast.setAttribute('role', 'alert');
-      toast.innerHTML = `
-        <div class="contact-toast__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="contact-toast__content">
-          <strong class="contact-toast__title">Request Received!</strong>
-          <p class="contact-toast__desc">Consultation request received successfully. Our team will contact you shortly to confirm your appointment.</p>
+      const popup = document.createElement('div');
+      popup.className = 'contact-toast';
+      popup.style.position = 'fixed';
+      popup.style.top = '0';
+      popup.style.left = '0';
+      popup.style.width = '100vw';
+      popup.style.height = '100vh';
+      popup.style.backgroundColor = 'rgba(0,0,0,0.6)';
+      popup.style.display = 'flex';
+      popup.style.alignItems = 'center';
+      popup.style.justifyContent = 'center';
+      popup.style.zIndex = '9999';
+      
+      const iconHtml = isSuccess 
+        ? `<div style="color: #10B981; margin-bottom: 1rem; display: flex; justify-content: center;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>`
+        : `<div style="color: #EF4444; margin-bottom: 1rem; display: flex; justify-content: center;"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>`;
+      
+      popup.innerHTML = `
+        <div style="background: white; padding: 2rem; border-radius: 8px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+          ${iconHtml}
+          <h3 style="margin-top: 0; color: #111827; font-size: 1.25rem; font-weight: 600;">${title}</h3>
+          <p style="color: #4B5563; margin-bottom: 1.5rem; line-height: 1.5; white-space: pre-line;">${message}</p>
+          <button class="btn btn--primary" style="width: 100%;" id="popupOkBtn">OK</button>
         </div>
       `;
-      document.body.appendChild(toast);
+      document.body.appendChild(popup);
+      document.body.style.overflow = 'hidden';
 
-      requestAnimationFrame(() => {
-        toast.classList.add('contact-toast--visible');
+      return new Promise(resolve => {
+        document.getElementById('popupOkBtn').addEventListener('click', () => {
+          popup.remove();
+          document.body.style.overflow = '';
+          resolve();
+        });
       });
-
-      setTimeout(() => {
-        toast.classList.remove('contact-toast--visible');
-        setTimeout(() => toast.remove(), 300);
-      }, 6000);
     };
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const isNameValid = validateField(fields.name);
@@ -356,24 +377,78 @@ const BAPA = (() => {
       const isRadioValid = validateRadio();
 
       if (isNameValid && isEmailValid && isPhoneValid && isServiceValid && isDateValid && isTimeValid && isRadioValid) {
-        // Collect form data for future n8n integration
-        // const formData = new FormData(form);
-        // const payload = Object.fromEntries(formData.entries());
-        // fetch('https://hook.n8n.example/webhook/consultation', { method: 'POST', body: JSON.stringify(payload) })
+        const submitBtn = form.querySelector('.consultation-form__submit');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.textContent = 'Submitting...';
+        submitBtn.disabled = true;
 
-        form.reset();
-        Object.values(fields).forEach((f) => {
-          f.el.classList.remove('consultation-form__input--error');
-          if (f.error) {
-            f.error.classList.remove('consultation-form__error--visible');
-            f.error.textContent = '';
+        const formData = new FormData(form);
+        const payload = {
+          fullName: formData.get('name') || '',
+          email: formData.get('email') || '',
+          phone: formData.get('phone') || '',
+          company: formData.get('company') || '',
+          country: formData.get('country') || '',
+          service: formData.get('service') || '',
+          consultationMode: formData.get('consultation_mode') || '',
+          preferredDate: formData.get('date') || '',
+          preferredTime: formData.get('time_slot') || '',
+          message: formData.get('notes') || ''
+        };
+
+        // Note: For production, switch to: 'https://automation.bapaconsultancy.com/webhook/appointment'
+        const webhookUrl = 'http://localhost:5678/webhook-test/appointment';
+
+        try {
+          console.log('Before fetch');
+          const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          });
+          console.log('After fetch completes');
+
+          const data = await response.json();
+          console.log('After response.json()');
+
+          if (data.success) {
+            console.log('Before showing popup');
+            showPopup('Appointment Request Submitted', 'Thank you for contacting BAPA Consultancy.\n\nYour consultation request has been submitted successfully.\nOur team will review your request and contact you shortly.')
+              .then(() => {
+                console.log('After popup closes');
+                form.reset();
+                Object.values(fields).forEach((f) => {
+                  f.el.classList.remove('consultation-form__input--error');
+                  if (f.error) {
+                    f.error.classList.remove('consultation-form__error--visible');
+                    f.error.textContent = '';
+                  }
+                });
+                if (radioError) {
+                  radioError.classList.remove('consultation-form__error--visible');
+                  radioError.textContent = '';
+                }
+              });
+          } else {
+            const errorMsg = data.errors ? (Array.isArray(data.errors) ? data.errors.join('\n') : JSON.stringify(data.errors, null, 2)) : 'Validation failed.';
+            console.log('Before showing popup');
+            showPopup('Submission Failed', errorMsg, false).then(() => {
+              console.log('After popup closes');
+            });
           }
-        });
-        if (radioError) {
-          radioError.classList.remove('consultation-form__error--visible');
-          radioError.textContent = '';
+        } catch (error) {
+          console.log('Inside catch');
+          console.log('Before showing popup');
+          showPopup('Connection Error', 'Unable to connect to our booking system.\nPlease try again later.', false).then(() => {
+            console.log('After popup closes');
+          });
+        } finally {
+          console.log('Inside finally');
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
         }
-        showToast();
       } else {
         const firstInvalid = Object.values(fields).find((f) => f.el.classList.contains('consultation-form__input--error'));
         if (firstInvalid) firstInvalid.el.focus();
