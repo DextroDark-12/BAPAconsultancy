@@ -354,12 +354,10 @@ const BAPA = (() => {
         </div>
       `;
       document.body.appendChild(popup);
-      document.body.style.overflow = 'hidden';
 
       return new Promise(resolve => {
         document.getElementById('popupOkBtn').addEventListener('click', () => {
           popup.remove();
-          document.body.style.overflow = '';
           resolve();
         });
       });
@@ -415,7 +413,10 @@ const BAPA = (() => {
 
           if (data.success) {
             console.log('Before showing popup');
-            showPopup('Appointment Request Submitted', 'Thank you for contacting BAPA Consultancy.\n\nYour consultation request has been submitted successfully.\nOur team will review your request and contact you shortly.')
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+
+            showPopup('Appointment Confirmed', 'Thank you for choosing BAPA Consultancy.\n\nYour consultation request has been submitted successfully and your preferred appointment has been recorded.\n\nOur team will contact you shortly to confirm any remaining details.')
               .then(() => {
                 console.log('After popup closes');
                 form.reset();
@@ -430,6 +431,7 @@ const BAPA = (() => {
                   radioError.classList.remove('consultation-form__error--visible');
                   radioError.textContent = '';
                 }
+                form.scrollIntoView({ behavior: 'smooth', block: 'start' });
               });
           } else {
             const errorMsg = data.errors ? (Array.isArray(data.errors) ? data.errors.join('\n') : JSON.stringify(data.errors, null, 2)) : 'Validation failed.';
