@@ -603,6 +603,46 @@ h3 {
   transform: translateX(2px);
 }
 
+/* Featured card — Accounting At Your Premises (homepage) */
+.service-card--featured {
+  position: relative;
+  background-color: #FFF9F0;
+  border: 2px solid rgba(230, 138, 31, 0.35);
+  box-shadow: 0 4px 24px rgba(34, 58, 143, 0.10), 0 2px 8px rgba(34, 58, 143, 0.06);
+  overflow: hidden;
+}
+
+.service-card--featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #E68A1F;
+  border-radius: 0 2px 2px 0;
+}
+
+.service-card--featured .service-card__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.service-card--featured .service-card__icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.service-card--featured .service-card__title {
+  font-weight: 800;
+}
+
+.service-card--featured:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 36px rgba(34, 58, 143, 0.14), 0 4px 16px rgba(230, 138, 31, 0.12);
+  border-color: rgba(230, 138, 31, 0.55);
+}
+
 
 /* --------------------------------------------------------------------------
    7. Trust Section — Why Businesses Trust BAPA
@@ -1817,6 +1857,46 @@ h3 {
   line-height: 1.7;
   color: var(--muted-text);
   flex: 1;
+}
+
+/* Featured card — Accounting At Your Premises (services page) */
+.svc-card--featured {
+  position: relative;
+  background-color: #FFF9F0;
+  border: 2px solid rgba(230, 138, 31, 0.35);
+  box-shadow: 0 4px 24px rgba(34, 58, 143, 0.10), 0 2px 8px rgba(34, 58, 143, 0.06);
+  overflow: hidden;
+}
+
+.svc-card--featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: #E68A1F;
+  border-radius: 0 2px 2px 0;
+}
+
+.svc-card--featured .svc-card__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.svc-card--featured .svc-card__icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.svc-card--featured .svc-card__title {
+  font-weight: 800;
+}
+
+.svc-card--featured:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 36px rgba(34, 58, 143, 0.14), 0 4px 16px rgba(230, 138, 31, 0.12);
+  border-color: rgba(230, 138, 31, 0.55);
 }
 
 
