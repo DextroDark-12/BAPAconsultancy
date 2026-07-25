@@ -1,0 +1,219 @@
+{
+  "consoleLogs": [],
+  "desktop": {
+    "name": "desktop",
+    "dom": {
+      "wrapperExists": true,
+      "wrapperParent": "welcome-popup__modal",
+      "heroParent": "brochure-wrapper",
+      "gridParent": "brochure-wrapper",
+      "ctaParent": "welcome-popup__modal",
+      "closeChildTags": [
+        "svg"
+      ],
+      "closeBrochureInside": false,
+      "modalChildren": [
+        {
+          "tag": "BUTTON",
+          "class": "welcome-popup__close"
+        },
+        {
+          "tag": "DIV",
+          "class": "brochure-wrapper"
+        },
+        {
+          "tag": "DIV",
+          "class": "brochure-cta-wrapper"
+        }
+      ],
+      "popupChildren": [
+        {
+          "class": "welcome-popup__modal"
+        }
+      ]
+    },
+    "cs": {
+      "welcomePopup": {
+        "rectW": 1440,
+        "rectH": 900,
+        "width": "1440px",
+        "height": "900px",
+        "display": "flex",
+        "flexDirection": "row",
+        "overflow": "auto"
+      },
+      "modal": {
+        "rectW": 1200,
+        "rectH": 1392.5,
+        "width": "1200px",
+        "height": "1392.45px",
+        "maxWidth": "1200px",
+        "overflow": "visible",
+        "display": "block"
+      },
+      "wrapper": {
+        "rectW": 1200,
+        "rectH": 1201.1,
+        "width": "1200px",
+        "height": "1201.06px",
+        "display": "flex"
+      },
+      "grid": {
+        "rectW": 1200,
+        "rectH": 683.5,
+        "width": "1200px",
+        "gridTemplateColumns": "357.328px 357.328px 357.344px"
+      },
+      "softwareCard": {
+        "rectW": 357.3,
+        "rectH": 619.5,
+        "width": "357.328px",
+        "height": "619.531px"
+      }
+    }
+  },
+  "tablet": {
+    "name": "tablet",
+    "dom": {
+      "wrapperExists": true,
+      "wrapperParent": "welcome-popup__modal",
+      "heroParent": "brochure-wrapper",
+      "gridParent": "brochure-wrapper",
+      "ctaParent": "welcome-popup__modal",
+      "closeChildTags": [
+        "svg"
+      ],
+      "closeBrochureInside": false,
+      "modalChildren": [
+        {
+          "tag": "BUTTON",
+          "class": "welcome-popup__close"
+        },
+        {
+          "tag": "DIV",
+          "class": "brochure-wrapper"
+        },
+        {
+          "tag": "DIV",
+          "class": "brochure-cta-wrapper"
+        }
+      ],
+      "popupChildren": [
+        {
+          "class": "welcome-popup__modal"
+        }
+      ]
+    },
+    "cs": {
+      "welcomePopup": {
+        "rectW": 834,
+        "rectH": 1194,
+        "width": "834px",
+        "height": "1194px",
+        "display": "flex",
+        "flexDirection": "row",
+        "overflow": "auto"
+      },
+      "modal": {
+        "rectW": 794,
+        "rectH": 2918.2,
+        "width": "794px",
+        "height": "2918.16px",
+        "maxWidth": "1200px",
+        "overflow": "visible",
+        "display": "block"
+      },
+      "wrapper": {
+        "rectW": 794,
+        "rectH": 2726.8,
+        "width": "794px",
+        "height": "2726.77px",
+        "display": "flex"
+      },
+      "grid": {
+        "rectW": 794,
+        "rectH": 1797.5,
+        "width": "794px",
+        "gridTemplateColumns": "746px"
+      },
+      "softwareCard": {
+        "rectW": 746,
+        "rectH": 590.3,
+        "width": "746px",
+        "height": "590.344px"
+      }
+    }
+  },
+  "mobile": {
+    "name": "mobile",
+    "dom": {
+      "wrapperExists": true,
+      "wrapperParent": "welcome-popup__modal",
+      "heroParent": "brochure-wrapper",
+      "gridParent": "brochure-wrapper",
+      "ctaParent": "welcome-popup__modal",
+      "closeChildTags": [
+        "svg"
+      ],
+      "closeBrochureInside": false,
+      "modalChildren": [
+        {
+          "tag": "BUTTON",
+          "class": "welcome-popup__close"
+        },
+        {
+          "tag": "DIV",
+          "class": "brochure-wrapper"
+        },
+        {
+          "tag": "DIV",
+          "class": "brochure-cta-wrapper"
+        }
+      ],
+      "popupChildren": [
+        {
+          "class": "welcome-popup__modal"
+        }
+      ]
+    },
+    "cs": {
+      "welcomePopup": {
+        "rectW": 390,
+        "rectH": 844,
+        "width": "390px",
+        "height": "844px",
+        "display": "flex",
+        "flexDirection": "row",
+        "overflow": "auto"
+      },
+      "modal": {
+        "rectW": 366,
+        "rectH": 3220.1,
+        "width": "366px",
+        "height": "3220.08px",
+        "maxWidth": "1200px",
+        "overflow": "visible",
+        "display": "block"
+      },
+      "wrapper": {
+        "rectW": 366,
+        "rectH": 2995.1,
+        "width": "366px",
+        "height": "2995.09px",
+        "display": "flex"
+      },
+      "grid": {
+        "rectW": 366,
+        "rectH": 1770.7,
+        "width": "366px",
+        "gridTemplateColumns": "334px"
+      },
+      "softwareCard": {
+        "rectW": 334,
+        "rectH": 611.5,
+        "width": "334px",
+        "height": "611.531px"
+      }
+    }
+  }
+}

@@ -780,16 +780,6 @@ const BAPA = (() => {
       }
     });
 
-    // ── Dismiss checkbox ──
-    const checkbox = popup.querySelector('[data-welcome-dismiss]');
-    if (checkbox) {
-      checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-          setPopupDismissed();
-        }
-      });
-    }
-
     // ── Pause/resume timer on tab visibility change ──
     document.addEventListener('visibilitychange', () => {
       if (document.hidden && !popupOpen) {

@@ -814,114 +814,199 @@
 
       <!-- Close button (always visible, pinned) -->
       <button class="welcome-popup__close" aria-label="Close welcome popup" data-welcome-close>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="18" y1="6" x2="6" y2="18"/>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="6" y1="6" x2="18" y2="18"/>
+          <line x1="18" y1="6" x2="6" y2="18"/>
         </svg>
       </button>
 
-      <!-- ═══ Fixed Header ═══ -->
-      <div class="welcome-popup__header">
-        <span class="welcome-popup__badge">WELCOME</span>
-        <h2 class="welcome-popup__heading">Welcome to BAPA Consultancy</h2>
-        <p class="welcome-popup__subtitle">
-          Trusted accounting, taxation, compliance, and outsourcing solutions for businesses across India.
-        </p>
-      </div>
-
-      <!-- ═══ Scrollable Body ═══ -->
-      <div class="welcome-popup__body">
-
-        <h3 class="welcome-popup__section-title">Featured Business Packages</h3>
-        <p class="welcome-popup__section-subtitle">
-          Explore some of our most popular accounting solutions trusted by businesses across India.
-        </p>
-
-        <div class="welcome-popup__grid">
-
-          <!-- Card 1: ITR Filing Package -->
-          <article class="welcome-package-card">
-            <div class="welcome-package-card__icon">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                <rect x="6" y="4" width="24" height="28" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                <line x1="11" y1="12" x2="25" y2="12" stroke="currentColor" stroke-width="1.5"/>
-                <line x1="11" y1="18" x2="25" y2="18" stroke="currentColor" stroke-width="1.5"/>
-                <line x1="11" y1="24" x2="19" y2="24" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M13 28l3 2 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h4 class="welcome-package-card__title">ITR Filing Package</h4>
-            <div class="welcome-package-card__price">₹1800 Only</div>
-            <p class="welcome-package-card__desc">Includes Balance Sheet</p>
-            <span class="welcome-package-card__terms">*Terms &amp; Conditions Apply</span>
-          </article>
-
-          <!-- Card 2: Software We Work With -->
-          <article class="welcome-package-card">
-            <div class="welcome-package-card__icon">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                <rect x="4" y="4" width="28" height="28" rx="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                <line x1="4" y1="13" x2="32" y2="13" stroke="currentColor" stroke-width="1.5"/>
-                <line x1="13" y1="4" x2="13" y2="32" stroke="currentColor" stroke-width="1.5"/>
-                <circle cx="9" cy="9" r="1.5" fill="currentColor"/>
-              </svg>
-            </div>
-            <h4 class="welcome-package-card__title">Software We Work With</h4>
-            <div class="welcome-package-card__badges">
-              <span class="welcome-package-card__badge">Tally</span>
-              <span class="welcome-package-card__badge">Marg ERP</span>
-              <span class="welcome-package-card__badge">Shree Sava</span>
-              <span class="welcome-package-card__badge">Xero</span>
-              <span class="welcome-package-card__badge">Zoho Books</span>
-              <span class="welcome-package-card__badge">QuickBooks</span>
-            </div>
-            <span class="welcome-package-card__terms">*Terms &amp; Conditions Apply</span>
-          </article>
-
-          <!-- Card 3: GST Return Package -->
-          <article class="welcome-package-card">
-            <div class="welcome-package-card__icon">
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
-                <rect x="7" y="5" width="22" height="26" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                <path d="M12 12l-2 6h1.5l.5-1.2h3.8l.5 1.2h1.5l-2-6h-3.5zm.5 1.5L14 10.5l1.5 3h-3z" fill="currentColor"/>
-                <line x1="19" y1="14" x2="26" y2="14" stroke="currentColor" stroke-width="1.5"/>
-                <line x1="19" y1="19" x2="24" y2="19" stroke="currentColor" stroke-width="1.5"/>
-                <line x1="19" y1="24" x2="22" y2="24" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-            </div>
-            <h4 class="welcome-package-card__title">GST Return Package</h4>
-            <div class="welcome-package-card__price">₹48,000 / Year</div>
-            <p class="welcome-package-card__desc">Accounting Included</p>
-            <span class="welcome-package-card__terms">*Terms &amp; Conditions Apply</span>
-          </article>
-
-        </div>
-
-      </div>
-
-      <!-- ═══ Fixed Footer ═══ -->
-      <div class="welcome-popup__footer">
-
-        <div class="welcome-popup__actions">
-          <a href="consultation.html" class="btn btn--primary">Book Consultation</a>
-          <a
-            href="https://wa.me/918866027727"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn consultation-reassurance__wa-btn"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="fill: currentColor;">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.455 5.703 1.455h.008c6.547 0 11.883-5.337 11.887-11.896a11.815 11.815 0 00-3.515-8.428" fill="currentColor"/>
+      <!-- ═══ Brochure Body ═══ -->
+      <div class="brochure-wrapper">
+        
+        <!-- Priority 1: Hero Card -->
+        <div class="brochure-hero">
+          
+          <div class="brochure-hero__left">
+            <svg class="brochure-hero__illustration" viewBox="0 0 240 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+               <path d="M40 250V60h40v190M80 250V20h80v230M160 250V80h40v170" stroke="#f1a141" stroke-width="2" fill="none"/>
+               <rect x="50" y="80" width="10" height="10" stroke="#f1a141" stroke-width="1.5"/>
+               <rect x="50" y="110" width="10" height="10" stroke="#f1a141" stroke-width="1.5"/>
+               <rect x="100" y="50" width="10" height="10" stroke="#f1a141" stroke-width="1.5"/>
+               <rect x="100" y="80" width="10" height="10" stroke="#f1a141" stroke-width="1.5"/>
+               <rect x="130" y="50" width="10" height="10" stroke="#f1a141" stroke-width="1.5"/>
+               <rect x="130" y="80" width="10" height="10" stroke="#f1a141" stroke-width="1.5"/>
+               <circle cx="120" cy="140" r="16" stroke="#fff" stroke-width="2"/>
+               <path d="M80 220 Q80 180 120 180 Q160 180 160 220" stroke="#fff" stroke-width="2" fill="none"/>
+               <rect x="90" y="210" width="60" height="30" rx="2" stroke="#fff" stroke-width="2" fill="#0d1f54"/>
+               <rect x="160" y="190" width="40" height="45" stroke="#f1a141" stroke-width="2" fill="#0d1f54"/>
+               <path d="M165 220l10-10l10 5l10-10" stroke="#f1a141" stroke-width="2" fill="none"/>
+               <path d="M60 220v-10M50 200q10-10 10 10M70 200q-10-10-10 10" stroke="#f1a141" stroke-width="1.5" fill="none"/>
+               <rect x="55" y="210" width="10" height="10" stroke="#f1a141" stroke-width="1.5"/>
             </svg>
-            WhatsApp Us
+          </div>
+          
+          <div class="brochure-hero__right">
+            <div class="brochure-hero__header">
+              <h2 class="brochure-hero__title">Accounting At<br>Your Premises</h2>
+              <div class="brochure-hero__badge">
+                <div class="brochure-hero__badge-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h6M9 13h6M9 17h6"/></svg>
+                </div>
+                <div class="brochure-hero__badge-text">
+                  <span class="light">ON-SITE. RELIABLE.</span>
+                  <span class="bold">FOCUSED ON YOUR GROWTH.</span>
+                </div>
+              </div>
+            </div>
+            <p class="brochure-hero__desc">
+              Our professional accountants work directly from your office, integrating seamlessly with your team to manage your accounts, compliance and financial operations.
+            </p>
+            
+            <div class="brochure-hero__features">
+              <div class="brochure-feature">
+                <div class="brochure-feature__icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>
+                </div>
+                <div class="brochure-feature__text">
+                  <strong>Dedicated Accountant</strong>
+                  <span>Full-time or part-time support at your office</span>
+                </div>
+              </div>
+              <div class="brochure-feature">
+                <div class="brochure-feature__icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="brochure-feature__text">
+                  <strong>Compliance & Tax Support</strong>
+                  <span>GST, TDS, Income Tax & all statutory compliance</span>
+                </div>
+              </div>
+              <div class="brochure-feature">
+                <div class="brochure-feature__icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="2.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                </div>
+                <div class="brochure-feature__text">
+                  <strong>Accurate Reporting</strong>
+                  <span>Timely reports for better business decisions</span>
+                </div>
+              </div>
+              <div class="brochure-feature">
+                <div class="brochure-feature__icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <div class="brochure-feature__text">
+                  <strong>Seamless Integration</strong>
+                  <span>Works with your team and existing system</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Bottom Grid: 3 Cards -->
+        <div class="brochure-grid">
+          
+          <!-- Card 2: Software We Work With -->
+          <div class="brochure-card brochure-card--software">
+            <div class="brochure-card__header">
+              <svg width="40" height="40" viewBox="0 0 36 36" fill="none" stroke="#0d1f54">
+                <rect x="4" y="4" width="28" height="28" rx="3" stroke-width="2"/>
+                <line x1="4" y1="13" x2="32" y2="13" stroke-width="2"/>
+                <line x1="13" y1="4" x2="13" y2="32" stroke-width="2"/>
+                <circle cx="9" cy="9" r="1.5" fill="#0d1f54"/>
+              </svg>
+              <h3 class="brochure-card__title">Software<br>We Work With</h3>
+            </div>
+            <p class="brochure-card__desc">We are experts with industry-leading<br>accounting and business software.</p>
+            
+            <div class="brochure-software-grid">
+              <div class="brochure-software-badge brochure-software-badge--tally"><span>Tally</span> Prime</div>
+              <div class="brochure-software-badge brochure-software-badge--marg"><span>Marg</span> ERP 9+</div>
+              <div class="brochure-software-badge brochure-software-badge--zoho"><span>ZOHO</span> Books</div>
+              <div class="brochure-software-badge brochure-software-badge--qb"><span>qb</span> quickbooks</div>
+              <div class="brochure-software-badge brochure-software-badge--xero">xero</div>
+              <div class="brochure-software-badge brochure-software-badge--shree"><span>Shree</span> Sava</div>
+            </div>
+            
+            <div class="brochure-card__ticks-footer">
+              <span class="brochure-tick-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Licensed Experts</span>
+              <span class="brochure-tick-divider">|</span>
+              <span class="brochure-tick-item">Up-to-date & Reliable</span>
+              <span class="brochure-tick-divider">|</span>
+              <span class="brochure-tick-item">Secure & Trusted</span>
+            </div>
+          </div>
+          
+          <!-- Card 3: GST Return Package -->
+          <div class="brochure-card brochure-card--gst">
+            <div class="brochure-card__header brochure-card__header--center">
+              <svg width="40" height="40" viewBox="0 0 36 36" fill="none" stroke="#e68a1f">
+                <rect x="7" y="5" width="22" height="26" rx="2" stroke-width="2"/>
+                <text x="18" y="22" text-anchor="middle" font-size="11" font-weight="bold" fill="#e68a1f" stroke="none">GST</text>
+              </svg>
+              <h3 class="brochure-card__title">GST Return<br>Package</h3>
+            </div>
+            <div class="brochure-card__price">₹48,000 <span>/ Year</span></div>
+            
+            <ul class="brochure-list">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> GST Return Filing (All Types)</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Accounting Included</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Monthly Reconciliation</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Notice & Compliance Support</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Year-End Summary</li>
+            </ul>
+            
+            <div class="brochure-card__bottom-bar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              100% Compliant. 100% Hassle-Free.
+            </div>
+          </div>
+          
+          <!-- Card 4: ITR Filing Package -->
+          <div class="brochure-card brochure-card--itr">
+            <div class="brochure-card__header brochure-card__header--center">
+              <svg width="40" height="40" viewBox="0 0 36 36" fill="none" stroke="#e68a1f">
+                <rect x="7" y="5" width="22" height="26" rx="2" stroke-width="2"/>
+                <text x="18" y="17" text-anchor="middle" font-size="11" font-weight="bold" fill="#e68a1f" stroke="none">ITR</text>
+                <line x1="12" y1="22" x2="24" y2="22" stroke-width="2"/>
+                <line x1="12" y1="26" x2="18" y2="26" stroke-width="2"/>
+              </svg>
+              <h3 class="brochure-card__title">ITR Filing<br>Package</h3>
+            </div>
+            <div class="brochure-card__price">₹1800 <span>Only</span></div>
+            
+            <ul class="brochure-list">
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> ITR Filing</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Balance Sheet</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Expert Review</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Fast & Secure Filing</li>
+              <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg> Support till Refund</li>
+            </ul>
+            
+            <div class="brochure-card__bottom-bar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e68a1f" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              Accurate Filing. Maximum Refund.
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- ═══ Footer Actions ═══ -->
+      <div class="brochure-cta-wrapper">
+        <div class="brochure-cta-buttons">
+          <a href="consultation.html" class="brochure-btn brochure-btn--primary">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            BOOK CONSULTATION
+          </a>
+          <a href="https://wa.me/918866027727" target="_blank" rel="noopener noreferrer" class="brochure-btn brochure-btn--whatsapp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/>
+            </svg>
+            WHATSAPP US
           </a>
         </div>
-
-        <label class="welcome-popup__dismiss">
-          <input type="checkbox" data-welcome-dismiss />
-          Don&#39;t show this again for now
-        </label>
-
+        <div class="brochure-terms">*Terms and condition applied</div>
       </div>
 
     </div>
