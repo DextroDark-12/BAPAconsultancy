@@ -128,115 +128,6 @@ const BAPA = (() => {
   };
 
   // -----------------------------------------------------------------------
-  // 3. Contact form validation (Phase 1 — frontend only)
-  // -----------------------------------------------------------------------
-  // Future: Replace with n8n webhook → WhatsApp + CRM flow
-  // Example: fetch('https://hook.n8n.example/webhook/contact', { method: 'POST', body: formData })
-
-  const initContactForm = () => {
-    const form = document.getElementById('contactForm');
-    if (!form) return;
-
-    const fields = {
-      name: { el: document.getElementById('contact-name'), error: form.querySelector('#contact-name + .contact-form__error') },
-      email: { el: document.getElementById('contact-email'), error: form.querySelector('#contact-email + .contact-form__error') },
-      phone: { el: document.getElementById('contact-phone'), error: form.querySelector('#contact-phone + .contact-form__error') },
-      message: { el: document.getElementById('contact-message'), error: form.querySelector('#contact-message + .contact-form__error') },
-    };
-
-    const validateField = (field, test) => {
-      const isValid = test(field.el.value.trim());
-      field.el.classList.toggle('contact-form__input--error', !isValid);
-      if (field.error) {
-        field.error.classList.toggle('contact-form__error--visible', !isValid);
-        field.error.textContent = isValid ? '' : 'This field is required';
-      }
-      return isValid;
-    };
-
-    const showToast = () => {
-      // Remove existing toast if any
-      const existing = document.querySelector('.contact-toast');
-      if (existing) existing.remove();
-
-      const toast = document.createElement('div');
-      toast.className = 'contact-toast';
-      toast.setAttribute('role', 'alert');
-      toast.innerHTML = `
-        <div class="contact-toast__icon" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M7 10l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="contact-toast__content">
-          <strong class="contact-toast__title">Thank You!</strong>
-          <p class="contact-toast__desc">Thank you for contacting BAPA Consultancy. Our team will reach out to you shortly.</p>
-        </div>
-      `;
-      document.body.appendChild(toast);
-
-      // Trigger animation
-      requestAnimationFrame(() => {
-        toast.classList.add('contact-toast--visible');
-      });
-
-      // Auto-dismiss after 5s
-      setTimeout(() => {
-        toast.classList.remove('contact-toast--visible');
-        setTimeout(() => toast.remove(), 300);
-      }, 5000);
-    };
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const isNameValid = validateField(fields.name, (v) => v.length >= 2);
-      const isEmailValid = validateField(fields.email, (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
-      const isPhoneValid = validateField(fields.phone, (v) => v.length >= 8);
-      const isMessageValid = validateField(fields.message, (v) => v.length >= 10);
-
-      if (isNameValid && isEmailValid && isPhoneValid && isMessageValid) {
-        // Collect form data for future n8n integration
-        // const formData = new FormData(form);
-        // const payload = Object.fromEntries(formData.entries());
-        // fetch('https://hook.n8n.example/webhook/contact', { method: 'POST', body: JSON.stringify(payload) })
-
-        form.reset();
-        // Clear any error states
-        Object.values(fields).forEach((f) => {
-          f.el.classList.remove('contact-form__input--error');
-          if (f.error) {
-            f.error.classList.remove('contact-form__error--visible');
-            f.error.textContent = '';
-          }
-        });
-        showToast();
-      } else {
-        // Focus first invalid field
-        const firstInvalid = Object.values(fields).find((f) => f.el.classList.contains('contact-form__input--error'));
-        if (firstInvalid) firstInvalid.el.focus();
-      }
-    });
-
-    // Real-time validation on blur
-    Object.entries(fields).forEach(([key, field]) => {
-      field.el.addEventListener('blur', () => {
-        if (field.el.value.trim()) {
-          const validators = {
-            name: (v) => v.length >= 2,
-            email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
-            phone: (v) => v.length >= 8,
-            message: (v) => v.length >= 10,
-          };
-          if (validators[key]) {
-            validateField(field, validators[key]);
-          }
-        }
-      });
-    });
-  };
-
-  // -----------------------------------------------------------------------
   // 4. Consultation form validation (Phase 1 — frontend only)
   // -----------------------------------------------------------------------
   // Future: Replace with n8n webhook → Google Calendar → WhatsApp Confirmation
@@ -533,6 +424,10 @@ const BAPA = (() => {
       if (section) {
         observer.observe(section);
       }
+
+      // Safety fallback: start animation after 3s regardless of scroll
+      // Ensures counters never stay at 0 if observer fails to trigger
+      setTimeout(animateCounters, 3000);
     } else {
       // Fallback: start animation immediately
       animateCounters();
@@ -997,7 +892,6 @@ const BAPA = (() => {
     initScrollHeader();
     initTopBar();
     initDrawer();
-    initContactForm();
     initConsultationForm();
     initCounterAnimation();
     initFaqAccordion();
