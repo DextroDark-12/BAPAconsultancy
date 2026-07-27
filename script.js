@@ -892,13 +892,23 @@ const BAPA = (() => {
   const initClientSuccessLoadMore = () => {
     // Load More Reviews
     const loadReviewsBtn = document.getElementById('csLoadMoreReviews');
-    if (loadReviewsBtn) {
+    const hiddenReviews = document.getElementById('csReviewsHidden');
+    if (loadReviewsBtn && hiddenReviews) {
       loadReviewsBtn.addEventListener('click', () => {
-        // Placeholder: Future integration with Google Reviews API
-        loadReviewsBtn.textContent = 'No More Reviews';
-        loadReviewsBtn.disabled = true;
-        loadReviewsBtn.style.opacity = '0.5';
-        loadReviewsBtn.style.cursor = 'not-allowed';
+        hiddenReviews.classList.add('cs-reviews__grid--visible');
+        loadReviewsBtn.textContent = 'View All Google Reviews';
+        loadReviewsBtn.onclick = null;
+        loadReviewsBtn.href = 'https://share.google/if6cZfqbKCrUc6Rl6';
+        loadReviewsBtn.target = '_blank';
+        loadReviewsBtn.rel = 'noopener noreferrer';
+        // Turn button into an external link
+        const newBtn = document.createElement('a');
+        newBtn.href = 'https://share.google/if6cZfqbKCrUc6Rl6';
+        newBtn.target = '_blank';
+        newBtn.rel = 'noopener noreferrer';
+        newBtn.className = loadReviewsBtn.className;
+        newBtn.textContent = 'View All Google Reviews';
+        loadReviewsBtn.parentNode.replaceChild(newBtn, loadReviewsBtn);
       });
     }
 

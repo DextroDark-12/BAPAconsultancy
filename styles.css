@@ -1411,15 +1411,14 @@ h3 {
 
 .site-logo__img {
   display: block;
-  height: 50px;
+  height: 65px;
   width: auto;
   object-fit: contain;
-  filter: saturate(1.3) contrast(1.1);
 }
 
 @media (min-width: 768px) {
   .site-logo__img {
-    height: 60px;
+    height: 78px;
   }
 }
 
@@ -3117,10 +3116,9 @@ h3 {
 
 .footer-logo__img {
   display: block;
-  height: 64px;
+  height: 86px;
   width: auto;
   object-fit: contain;
-  filter: saturate(1.3) contrast(1.1);
 }
 
 .footer-logo__text {
@@ -4634,6 +4632,22 @@ h3 {
   justify-content: center;
 }
 
+/* Hidden reviews grid (shown via Load More) */
+.cs-reviews__grid--hidden {
+  display: none;
+  margin-top: 1.5rem;
+}
+
+.cs-reviews__grid--hidden.cs-reviews__grid--visible {
+  display: grid;
+}
+
+@media (min-width: 640px) {
+  .cs-reviews__grid--hidden {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* Review Card */
 .cs-review-card {
   background-color: var(--white);
@@ -5203,7 +5217,7 @@ h3 {
 
 @media (min-width: 1024px) {
   .cs-platforms__grid {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
